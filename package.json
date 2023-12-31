@@ -1,0 +1,13 @@
+{
+  "name": "Fisheye",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ChloeGerry/Fisheye-P6.git",
+  "author": "Chloé Gerry <chloe.gerry@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@html-eslint/eslint-plugin": "^0.22.0",
+    "@html-eslint/parser": "^0.22.0",
+    "eslint": "^8.56.0"
+  }
+}
