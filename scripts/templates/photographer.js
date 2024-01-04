@@ -1,4 +1,4 @@
-export function photographerTemplate(data) {
+function photographerTemplate(data) {
   console.log("data", data);
   const { name, portrait } = data;
 

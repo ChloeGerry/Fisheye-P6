@@ -5,6 +5,9 @@
   "repository": "git@github.com:ChloeGerry/Fisheye-P6.git",
   "author": "Chloé Gerry <chloe.gerry@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "lint": "eslint ./scripts"
+  },
   "devDependencies": {
     "@html-eslint/eslint-plugin": "^0.22.0",
     "@html-eslint/parser": "^0.22.0",

@@ -1,5 +1,3 @@
-import { photographerTemplate } from "../templates/photographer";
-
 async function getPhotographers() {
   // Ceci est un exemple de données pour avoir un affichage de photographes de test dès le démarrage du projet,
   // mais il sera à remplacer avec une requête sur le fichier JSON en utilisant "fetch".
@@ -30,6 +28,7 @@ async function getPhotographers() {
 }
 
 async function displayData(photographers) {
+  console.log("photographers", photographers);
   const photographersSection = document.querySelector(".photographer_section");
 
   photographers.forEach((photographer) => {
