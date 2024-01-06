@@ -1,5 +1,3 @@
-@import url("photographer.css");
-
 .body {
   font-family: "DM Sans", sans-serif;
   margin: 0;
@@ -65,7 +63,6 @@
 
 .photographer-location {
   margin: 0;
-  /* margin: 0.5em 0 0 0; */
   color: #901c1c;
   font-size: 1em;
   line-height: 1em;
