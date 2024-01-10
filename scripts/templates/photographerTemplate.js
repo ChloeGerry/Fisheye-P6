@@ -1,5 +1,5 @@
 export function photographerTemplate(data) {
-  const { name, portrait, city, country, tagline, price } = data;
+  const { name, portrait, city, country, tagline, price, id } = data;
   const picture = `assets/photographers/${portrait}`;
 
   function setPhotographersCards() {
@@ -8,7 +8,7 @@ export function photographerTemplate(data) {
     article.classList.add("photographer-card");
 
     const photographerLink = document.createElement("a");
-    photographerLink.setAttribute("href", "photographer.html");
+    photographerLink.setAttribute("href", `photographer.html?id=${id}`);
     photographerLink.setAttribute("role", "link");
     photographerLink.setAttribute("aria-label", "navigation secondaire");
     photographerLink.classList.add("photographer-link");
