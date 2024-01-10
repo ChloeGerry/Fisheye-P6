@@ -1,10 +1,8 @@
-function photographerTemplate(data) {
-  console.log("data", data);
+export function photographerTemplate(data) {
   const { name, portrait, city, country, tagline, price } = data;
-
   const picture = `assets/photographers/${portrait}`;
 
-  function getUserCardDOM() {
+  function setPhotographersCards() {
     const article = document.createElement("article");
     article.setAttribute("aria-label", "présentation d'un photographe");
     article.classList.add("photographer-card");
@@ -16,8 +14,8 @@ function photographerTemplate(data) {
     photographerLink.classList.add("photographer-link");
 
     const image = document.createElement("img");
-    image.setAttribute("src", picture);
-    image.setAttribute("alt", name);
+    image.setAttribute("src", `${picture}`);
+    image.setAttribute("alt", `${name}`);
     image.classList.add("photographer-picture");
 
     const photographerName = document.createElement("h2");
@@ -44,5 +42,5 @@ function photographerTemplate(data) {
     article.appendChild(photographerPrice);
     return article;
   }
-  return { name, picture, getUserCardDOM };
+  return { setPhotographersCards };
 }

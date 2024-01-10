@@ -15,10 +15,12 @@
         </a>
       </nav>
     </header>
-    <main id="main">
-      <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      </div>
+    <main id="main" role="main">
+      <section
+        class="photographer-presentation"
+        role="region"
+        aria-label="profil du photographe"
+      ></section>
     </main>
     <div id="contact_modal">
       <div class="modal">
@@ -36,6 +38,7 @@
       </div>
     </div>
     <script type="module" src="./scripts/pages/photographer.js"></script>
+    <script type="module" src="./scripts/templates/photographerInformationsTemplate.js"></script>
     <script type="module" src="./scripts/utils/contactForm.js"></script>
   </body>
 </html>
