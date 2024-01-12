@@ -31,11 +31,16 @@ async function displayPhotographer() {
   let choosenPhotographer = null;
   let isIdExisting = false;
 
-  photographers.forEach((photographer) => {
-    if (photographer.id === Number(photographerIdToDisplay)) {
-      isIdExisting = true;
-    }
-  });
+  if (!photographers) {
+    errorWrapper.style.display = "block";
+    photographerInformations.style.display = "none";
+  } else {
+    photographers.forEach((photographer) => {
+      if (photographer.id === Number(photographerIdToDisplay)) {
+        isIdExisting = true;
+      }
+    });
+  }
 
   isIdExisting && photographerIdToDisplay
     ? (choosenPhotographer = photographers.find(
