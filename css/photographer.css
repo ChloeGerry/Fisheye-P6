@@ -89,16 +89,17 @@
   width: 9em;
 }
 
-.modal {
+#contact-modal {
   border-radius: 5px;
   background-color: #db8876;
   width: 50%;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 35px;
   margin: auto;
+  border: none;
 }
 
 .modal header {
@@ -106,7 +107,7 @@
   width: 100%;
 }
 
-.modal header img {
+.close-icon {
   cursor: pointer;
 }
 
