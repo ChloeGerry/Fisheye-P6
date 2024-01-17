@@ -8,54 +8,22 @@
     <title>Fisheye - photographe</title>
   </head>
   <body class="body">
-    <div class="page-content">
-      <header class="header" role="banner" aria-hidden="false">
-        <nav role="navigation" aria-label="navigation principale">
-          <a href="./index.html" role="link">
-            <img src="assets/images/logo.png" class="logo" alt="Page d'accueil de Fisheye" />
-          </a>
-        </nav>
-      </header>
-      <main id="main" role="main" aria-hidden="false">
-        <section
-          class="photographer-presentation"
-          role="region"
-          aria-label="profil du photographe"
-        ></section>
-        <section>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa consequatur facere eos
-          natus ad porro voluptate tempora cumque ducimus? Facere rem cum eos corporis quia minus
-          deserunt voluptatum maxime expedita. Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Culpa consequatur facere eos natus ad porro voluptate tempora cumque ducimus? Facere
-          rem cum eos corporis quia minus deserunt voluptatum maxime expedita. Lorem ipsum dolor sit
-          amet consectetur adipisicing elit. Culpa consequatur facere eos natus ad porro voluptate
-          tempora cumque ducimus? Facere rem cum eos corporis quia minus deserunt voluptatum maxime
-          expedita. Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa consequatur
-          facere eos natus ad porro voluptate tempora cumque ducimus? Facere rem cum eos corporis
-          quia minus deserunt voluptatum maxime expedita. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Culpa consequatur facere eos natus ad porro voluptate tempora cumque
-          ducimus? Facere rem cum eos corporis quia minus deserunt voluptatum maxime expedita. Lorem
-          ipsum dolor sit amet consectetur adipisicing elit. Culpa consequatur facere eos natus ad
-          porro voluptate tempora cumque ducimus? Facere rem cum eos corporis quia minus deserunt
-          voluptatum maxime expedita. Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
-          consequatur facere eos natus ad porro voluptate tempora cumque ducimus? Facere rem cum eos
-          corporis quia minus deserunt voluptatum maxime expedita. Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Culpa consequatur facere eos natus ad porro voluptate
-          tempora cumque ducimus? Facere rem cum eos corporis quia minus deserunt voluptatum maxime
-          expedita. Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa consequatur
-          facere eos natus ad porro voluptate tempora cumque ducimus? Facere rem cum eos corporis
-          quia minus deserunt voluptatum maxime expedita. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Culpa consequatur facere eos natus ad porro voluptate tempora cumque
-          ducimus? Facere rem cum eos corporis quia minus deserunt voluptatum maxime expedita. Lorem
-          ipsum dolor sit amet consectetur adipisicing elit. Culpa consequatur facere eos natus ad
-          porro voluptate tempora cumque ducimus? Facere rem cum eos corporis quia minus deserunt
-          voluptatum maxime expedita. Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
-          consequatur facere eos natus ad porro voluptate tempora cumque ducimus? Facere rem cum eos
-          corporis quia minus deserunt voluptatum maxime expedita. Lorem ipsum dolor sit amet
-          consectetur adipisicing elit.
-        </section>
-      </main>
-    </div>
+    <div class="modal-background"></div>
+    <header class="header" role="banner" aria-hidden="false">
+      <nav role="navigation" aria-label="navigation principale">
+        <a href="./index.html" role="link">
+          <img src="assets/images/logo.png" class="logo" alt="Page d'accueil de Fisheye" />
+        </a>
+      </nav>
+    </header>
+    <main id="main" role="main" aria-hidden="false">
+      <section
+        class="photographer-presentation"
+        role="region"
+        aria-label="profil du photographe"
+      ></section>
+      <section></section>
+    </main>
     <dialog id="contact-modal" role="dialog" aria-hidden="true">
       <div class="modal-header" role="banner" aria-label="en-tête du formulaire">
         <h2 class="modal-title">
@@ -67,7 +35,7 @@
           class="close-icon"
           tabindex="0"
           aria-label="fermeture du formulaire"
-          role="img"
+          role="button"
           alt="icône en forme de croix"
         />
       </div>
@@ -86,10 +54,9 @@
               type="text"
               tabindex="0"
               class="modal-input"
-              aria-labelledby="prenom"
               aria-required="true"
               aria-invalid="false"
-              aria-errormessage="Votre nom doit contenir 2  caractères ou plus."
+              aria-errormessage="Votre prénom doit contenir 2 caractères ou plus."
             />
           </div>
           <div
@@ -104,7 +71,6 @@
               type="text"
               tabindex="0"
               class="modal-input"
-              aria-labelledby="nom"
               aria-required="true"
               aria-invalid="false"
               aria-errormessage="Votre nom doit contenir 2  caractères ou plus."
@@ -122,10 +88,9 @@
               type="email"
               tabindex="0"
               class="modal-input"
-              aria-labelledby="email"
               aria-required="true"
               aria-invalid="false"
-              aria-errormessage="Votre nom doit contenir 2  caractères ou plus."
+              aria-errormessage="Vous devez entrer votre mail."
             />
           </div>
         </div>
@@ -143,10 +108,9 @@
               type="text"
               tabindex="0"
               class="modal-input message-input"
-              aria-labelledby="message"
               aria-required="true"
               aria-invalid="false"
-              aria-errormessage="Votre nom doit contenir 2  caractères ou plus."
+              aria-errormessage="Vous devez entrer un message."
             />
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { getPhotographers } from "../utils/getPhotographer.js";
 import { photographerInformationsTemplate } from "../templates/photographerInformationsTemplate.js";
 import { HandleFormClass } from "../utils/HandleFormClass.js";
+import { sendNotification } from "../utils/notification.js";
 
 async function displayPhotographer() {
   const { photographers } = await getPhotographers();
@@ -32,6 +33,7 @@ async function displayPhotographer() {
   let choosenPhotographer = null;
   let isIdExisting = false;
 
+  // ajouter si le tableau est vide
   if (!photographers) {
     errorWrapper.style.display = "block";
     photographerInformations.style.display = "none";
@@ -45,6 +47,8 @@ async function displayPhotographer() {
 
   let photographerName = null;
 
+  //if isIdExisting
+  /*
   isIdExisting && photographerIdToDisplay
     ? (choosenPhotographer = photographers.find(
         (photographer) =>
@@ -52,6 +56,16 @@ async function displayPhotographer() {
           photographer.id === Number(photographerIdToDisplay)
       ))
     : (errorWrapper.style.display = "block") && (photographerInformations.style.display = "none");
+*/
+  if (isIdExisting && photographerIdToDisplay) {
+    choosenPhotographer = photographers.find(
+      (photographer) => photographer.id === Number(photographerIdToDisplay)
+    );
+    photographerName = choosenPhotographer.name;
+  } else {
+    errorWrapper.style.display = "block";
+    photographerInformations.style.display = "none";
+  }
 
   if (!choosenPhotographer) {
     return;
@@ -117,6 +131,8 @@ const validate = () => {
     });
 
     form.reset();
+    formClass.closeModal();
+    sendNotification();
   }
 };
 

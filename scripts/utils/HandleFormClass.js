@@ -1,9 +1,7 @@
 export class HandleFormClass {
   constructor() {
-    this.pageContent = document.getElementsByClassName("page-content")[0];
-    this.header = document.getElementsByClassName("header")[0];
+    this.modalBackground = document.getElementsByClassName("modal-background")[0];
     this.modal = document.getElementById("contact-modal");
-    this.main = document.getElementById("main");
     this.firstNameErrorMessage = document.getElementsByClassName("first-name-error-message")[0];
     this.firstNameInput = document.getElementById("prenom");
     this.lastNameErrorMessage = document.getElementsByClassName("last-name-error-message")[0];
@@ -18,26 +16,16 @@ export class HandleFormClass {
     this.modal.setAttribute("aria-hidden", false);
     this.modal.style.display = "flex";
 
-    this.pageContent.style.opacity = "0.8";
-    this.pageContent.style.backgroundColor = "#c4c4c466";
-
-    // this.main.setAttribute("aria-hidden", true);
-    // this.main.style.display = "none";
-
-    // this.header.setAttribute("aria-hidden", true);
+    this.modalBackground.style.zIndex = "0";
+    this.modalBackground.style.background = "#c4c4c466";
   };
 
   closeModal = () => {
     this.modal.setAttribute("aria-hidden", true);
     this.modal.style.display = "none";
 
-    this.pageContent.style.opacity = "1";
-    this.pageContent.style.backgroundColor = "#ffffff";
-
-    // this.main.setAttribute("aria-hidden", false);
-    // this.main.style.display = "block";
-
-    // this.header.setAttribute("aria-hidden", false);
+    this.modalBackground.style.zIndex = "-1";
+    this.modalBackground.style.background = "#ffffff";
   };
 
   getFormFields = () => {
