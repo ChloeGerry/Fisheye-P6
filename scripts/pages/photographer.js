@@ -33,8 +33,7 @@ async function displayPhotographer() {
   let choosenPhotographer = null;
   let isIdExisting = false;
 
-  // ajouter si le tableau est vide
-  if (!photographers) {
+  if (!photographers || photographers.length === 0) {
     errorWrapper.style.display = "block";
     photographerInformations.style.display = "none";
   } else {
@@ -47,16 +46,6 @@ async function displayPhotographer() {
 
   let photographerName = null;
 
-  //if isIdExisting
-  /*
-  isIdExisting && photographerIdToDisplay
-    ? (choosenPhotographer = photographers.find(
-        (photographer) =>
-          (photographerName = photographer.name) &&
-          photographer.id === Number(photographerIdToDisplay)
-      ))
-    : (errorWrapper.style.display = "block") && (photographerInformations.style.display = "none");
-*/
   if (isIdExisting && photographerIdToDisplay) {
     choosenPhotographer = photographers.find(
       (photographer) => photographer.id === Number(photographerIdToDisplay)

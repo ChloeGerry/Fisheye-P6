@@ -26,7 +26,7 @@ async function init() {
 
   const { photographers } = await getPhotographers();
 
-  if (!photographers) {
+  if (!photographers || photographers.length === 0) {
     errorWrapper.style.display = "block";
   } else {
     displayPhotographers(photographers);
