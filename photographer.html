@@ -8,34 +8,152 @@
     <title>Fisheye - photographe</title>
   </head>
   <body class="body">
-    <header class="header" role="banner" aria-hidden="false">
-      <nav role="navigation" aria-label="navigation principale">
-        <a href="./index.html" role="link">
-          <img src="assets/images/logo.png" class="logo" alt="Page d'accueil de Fisheye" />
-        </a>
-      </nav>
-    </header>
-    <main id="main" role="main" aria-hidden="false">
-      <section
-        class="photographer-presentation"
-        role="region"
-        aria-label="profil du photographe"
-      ></section>
-    </main>
-    <dialog id="contact-modal" role="dialog" aria-hidden="true">
-      <header>
-        <h2>Contactez-moi</h2>
-        <img src="assets/icons/close.svg" class="close-icon" tabindex="0" />
+    <div class="page-content">
+      <header class="header" role="banner" aria-hidden="false">
+        <nav role="navigation" aria-label="navigation principale">
+          <a href="./index.html" role="link">
+            <img src="assets/images/logo.png" class="logo" alt="Page d'accueil de Fisheye" />
+          </a>
+        </nav>
       </header>
-      <form role="form">
-        <div>
-          <label>Prénom</label>
-          <input tabindex="0" />
+      <main id="main" role="main" aria-hidden="false">
+        <section
+          class="photographer-presentation"
+          role="region"
+          aria-label="profil du photographe"
+        ></section>
+        <section>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa consequatur facere eos
+          natus ad porro voluptate tempora cumque ducimus? Facere rem cum eos corporis quia minus
+          deserunt voluptatum maxime expedita. Lorem ipsum dolor sit amet consectetur adipisicing
+          elit. Culpa consequatur facere eos natus ad porro voluptate tempora cumque ducimus? Facere
+          rem cum eos corporis quia minus deserunt voluptatum maxime expedita. Lorem ipsum dolor sit
+          amet consectetur adipisicing elit. Culpa consequatur facere eos natus ad porro voluptate
+          tempora cumque ducimus? Facere rem cum eos corporis quia minus deserunt voluptatum maxime
+          expedita. Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa consequatur
+          facere eos natus ad porro voluptate tempora cumque ducimus? Facere rem cum eos corporis
+          quia minus deserunt voluptatum maxime expedita. Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Culpa consequatur facere eos natus ad porro voluptate tempora cumque
+          ducimus? Facere rem cum eos corporis quia minus deserunt voluptatum maxime expedita. Lorem
+          ipsum dolor sit amet consectetur adipisicing elit. Culpa consequatur facere eos natus ad
+          porro voluptate tempora cumque ducimus? Facere rem cum eos corporis quia minus deserunt
+          voluptatum maxime expedita. Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
+          consequatur facere eos natus ad porro voluptate tempora cumque ducimus? Facere rem cum eos
+          corporis quia minus deserunt voluptatum maxime expedita. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Culpa consequatur facere eos natus ad porro voluptate
+          tempora cumque ducimus? Facere rem cum eos corporis quia minus deserunt voluptatum maxime
+          expedita. Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa consequatur
+          facere eos natus ad porro voluptate tempora cumque ducimus? Facere rem cum eos corporis
+          quia minus deserunt voluptatum maxime expedita. Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Culpa consequatur facere eos natus ad porro voluptate tempora cumque
+          ducimus? Facere rem cum eos corporis quia minus deserunt voluptatum maxime expedita. Lorem
+          ipsum dolor sit amet consectetur adipisicing elit. Culpa consequatur facere eos natus ad
+          porro voluptate tempora cumque ducimus? Facere rem cum eos corporis quia minus deserunt
+          voluptatum maxime expedita. Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
+          consequatur facere eos natus ad porro voluptate tempora cumque ducimus? Facere rem cum eos
+          corporis quia minus deserunt voluptatum maxime expedita. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit.
+        </section>
+      </main>
+    </div>
+    <dialog id="contact-modal" role="dialog" aria-hidden="true">
+      <div class="modal-header" role="banner" aria-label="en-tête du formulaire">
+        <h2 class="modal-title">
+          Contactez-moi
+          <span class="modal-title_photographer" aria-label="nom du photographe"></span>
+        </h2>
+        <img
+          src="assets/icons/close.svg"
+          class="close-icon"
+          tabindex="0"
+          aria-label="fermeture du formulaire"
+          role="img"
+          alt="icône en forme de croix"
+        />
+      </div>
+      <form role="form" class="form-wrapper">
+        <div role="group" aria-labelledby="coordonnees" class="form-data_wrapper">
+          <p id="coordonnees"></p>
+          <div
+            class="form-data first-name-error-message"
+            data-error="Votre prénom doit contenir 2 caractères ou plus."
+            data-error-visible="false"
+          >
+            <label for="prenom" class="modal-label">Prénom</label>
+            <input
+              name="prenom"
+              id="prenom"
+              type="text"
+              tabindex="0"
+              class="modal-input"
+              aria-labelledby="prenom"
+              aria-required="true"
+              aria-invalid="false"
+              aria-errormessage="Votre nom doit contenir 2  caractères ou plus."
+            />
+          </div>
+          <div
+            class="form-data last-name-error-message"
+            data-error="Votre nom doit contenir 2  caractères ou plus."
+            data-error-visible="false"
+          >
+            <label for="nom" class="modal-label">Nom</label>
+            <input
+              name="nom"
+              id="nom"
+              type="text"
+              tabindex="0"
+              class="modal-input"
+              aria-labelledby="nom"
+              aria-required="true"
+              aria-invalid="false"
+              aria-errormessage="Votre nom doit contenir 2  caractères ou plus."
+            />
+          </div>
+          <div
+            class="form-data email-error-message"
+            data-error="Vous devez entrer votre mail."
+            data-error-visible="false"
+          >
+            <label for="email" class="modal-label">Email</label>
+            <input
+              name="email"
+              id="email"
+              type="email"
+              tabindex="0"
+              class="modal-input"
+              aria-labelledby="email"
+              aria-required="true"
+              aria-invalid="false"
+              aria-errormessage="Votre nom doit contenir 2  caractères ou plus."
+            />
+          </div>
         </div>
-        <button class="contact_button">Envoyer</button>
+        <div class="form-data_wrapper" role="group" aria-labelledby="form-message">
+          <p id="form-message"></p>
+          <div
+            class="form-data message-error-message"
+            data-error="Vous devez entrer un message."
+            data-error-visible="false"
+          >
+            <label for="message" class="modal-label">Votre message</label>
+            <input
+              name="message"
+              id="message"
+              type="text"
+              tabindex="0"
+              class="modal-input message-input"
+              aria-labelledby="message"
+              aria-required="true"
+              aria-invalid="false"
+              aria-errormessage="Votre nom doit contenir 2  caractères ou plus."
+            />
+          </div>
+        </div>
+        <button role="button" class="form-button" type="submit" aria-label="envoyer">
+          Envoyer
+        </button>
       </form>
-      <!-- <div class="modal">
-      </div> -->
     </dialog>
     <script type="module" src="./scripts/pages/photographer.js"></script>
   </body>

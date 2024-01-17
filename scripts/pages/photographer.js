@@ -1,6 +1,6 @@
 import { getPhotographers } from "../utils/getPhotographer.js";
 import { photographerInformationsTemplate } from "../templates/photographerInformationsTemplate.js";
-import { HandleModalClass } from "../utils/contactForm.js";
+import { HandleFormClass } from "../utils/HandleFormClass.js";
 
 async function displayPhotographer() {
   const { photographers } = await getPhotographers();
@@ -59,29 +59,74 @@ async function displayPhotographer() {
 
   const photographerModel = photographerInformationsTemplate(choosenPhotographer);
   const photographerInformationsCard = photographerModel.setPhotographerCard();
-  handleModal(photographerName);
+  handleModal();
+  handleForm(photographerName);
   return photographerInformationsCard;
 }
 
-async function handleModal(photographerName) {
+async function handleModal() {
   const openFormButton = document.getElementsByClassName("contact-button")[0];
-  const modalClass = new HandleModalClass();
-  openFormButton.addEventListener("click", modalClass.displayModal);
+  const formClass = new HandleFormClass();
+  openFormButton.addEventListener("click", () => {
+    const formFields = formClass.getFormFields();
+    formClass.displayModal();
+
+    formFields.forEach((field) => {
+      field.messageNode.setAttribute("data-error-visible", "false");
+      field.accessibilityMessage.setAttribute("aria-invalid", "false");
+    });
+  });
 
   const closeIcon = document.getElementsByClassName("close-icon")[0];
-  closeIcon.addEventListener("click", modalClass.closeModal);
+  closeIcon.addEventListener("click", formClass.closeModal);
 
   closeIcon.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
-      modalClass.closeModal();
+      formClass.closeModal();
     }
   });
 
   const modal = document.getElementById("contact-modal");
   modal.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
-      modalClass.closeModal();
+      formClass.closeModal();
     }
+  });
+}
+
+const form = document.getElementsByClassName("form-wrapper")[0];
+
+const validate = () => {
+  const formClass = new HandleFormClass();
+  const formFields = formClass.getFormFields();
+  let areAllFieldsValids = true;
+
+  formFields.forEach((field) => {
+    field.messageNode.setAttribute("data-error-visible", field.isInvalid ? "true" : "false");
+    field.accessibilityMessage.setAttribute("aria-invalid", field.isInvalid ? "true" : "false");
+
+    if (field.isInvalid) {
+      areAllFieldsValids = false;
+      return;
+    }
+  });
+
+  if (areAllFieldsValids) {
+    formFields.forEach((field) => {
+      console.log(field.fieldName, field.value);
+    });
+
+    form.reset();
+  }
+};
+
+async function handleForm(photographerName) {
+  const formTitle = document.getElementsByClassName("modal-title_photographer")[0];
+  formTitle.textContent = ` ${photographerName}`;
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    validate();
   });
 }
 

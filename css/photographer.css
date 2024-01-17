@@ -3,13 +3,22 @@
   margin: 0;
 }
 
+.page-content {
+  width: 100%;
+  height: 100%;
+}
+
 .header {
-  height: 90px;
-  margin: 2.5em 6.25em;
+  height: 5.625em;
+  padding: 2.5em 6.25em;
 }
 
 .logo {
   height: 50px;
+}
+
+#main {
+  padding-bottom: 21em;
 }
 
 .error-wrapper {
@@ -30,15 +39,12 @@
   color: #901c1c;
 }
 
-#contact_modal {
-  display: none;
-}
-
 .photographer-presentation {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #fafafa;
+  background: #fafafa;
+  /* background-color: #fafafa; */
   height: 18.75em;
   margin: 0 6.25em;
   padding: 3.5em 3em;
@@ -78,7 +84,7 @@
 }
 
 .contact-button {
-  font-size: 20px;
+  font-size: 1.25em;
   font-weight: bold;
   color: white;
   padding: 0.9em 0;
@@ -93,53 +99,93 @@
   border-radius: 5px;
   background-color: #db8876;
   width: 50%;
+  left: 50%;
+  top: 66%;
+  transform: translate(-50%, -50%);
+  position: absolute;
   display: none;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 35px;
-  margin: auto;
+  padding: 2.188em;
+  margin: 4em auto;
   border: none;
+  box-shadow: -5px 10px 30px 0px rgba(0, 0, 0, 0.25);
 }
 
-.modal header {
+.modal-header {
+  display: flex;
   justify-content: space-between;
+  align-items: baseline;
   width: 100%;
+  margin-bottom: 1em;
 }
 
 .close-icon {
   cursor: pointer;
 }
 
-.modal header h2 {
-  font-size: 64px;
-  font-weight: normal;
-  text-align: center;
+.modal-title {
+  display: flex;
+  flex-direction: column;
+  font-size: 4em;
+  font-weight: 400;
+  margin: 0;
 }
 
-form {
+.form-wrapper {
   display: flex;
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
 }
 
-form label {
+.form-data_wrapper {
+  width: 100%;
+}
+
+.form-data[data-error]::after {
+  content: attr(data-error);
+  color: black;
+  display: block;
+  text-align: right;
+  opacity: 0;
+  text-align: left;
+}
+
+.form-data[data-error-visible="true"]::after {
+  opacity: 1;
+  margin: 0.5em 0;
+}
+
+[aria-invalid="true"] {
+  outline: 2px solid red;
+}
+
+.modal-label {
+  font-size: 2.5em;
   color: #312e2e;
-  font-size: 36px;
+  font-weight: 400;
 }
 
-form div {
-  display: flex;
-  flex-direction: column;
+.modal-input {
   width: 100%;
-  align-items: self-start;
-  margin-bottom: 26px;
-}
-
-form input {
-  width: 100%;
-  height: 68px;
+  height: 2.8em;
   border: none;
   border-radius: 5px;
+  font-size: 1.5em;
+}
+
+.message-input {
+  height: 7em;
+}
+
+.form-button {
+  background: #901c1c;
+  border-radius: 5px;
+  color: #ffffff;
+  border: none;
+  font-size: 1.125em;
+  padding: 1.5em 3em;
+  margin: 1.5em 0 0 0;
 }
