@@ -1,7 +1,9 @@
 import { getPhotographers } from "../utils/getPhotographer.js";
 import { photographerInformationsTemplate } from "../templates/photographerInformationsTemplate.js";
 import { HandleFormClass } from "../utils/HandleFormClass.js";
-import { sendNotification } from "../utils/notification.js";
+import { getMedia } from "../utils/getMedia.js";
+import { mediaCard } from "../factories/MediaFactory.js";
+import { PhotographerErrorMessage } from "../utils/ErrorMessageClass.js";
 
 async function displayPhotographer() {
   const { photographers } = await getPhotographers();
@@ -9,32 +11,14 @@ async function displayPhotographer() {
   const currentUrl = new URLSearchParams(window.location.search);
   const photographerIdToDisplay = currentUrl.get("id");
 
-  const main = document.getElementById("main");
+  const errorMessage = new PhotographerErrorMessage();
   const photographerInformations = document.getElementsByClassName("photographer-presentation")[0];
-
-  const errorWrapper = document.createElement("div");
-  errorWrapper.classList.add("error-wrapper");
-
-  const error = document.createElement("p");
-  error.textContent = "Oups, il semble y avoir une erreur.";
-  error.classList.add("error");
-
-  const redirection = document.createElement("a");
-  redirection.textContent = "Retourner sur la page d'accueil";
-  redirection.setAttribute("href", "index.html");
-  redirection.classList.add("redirection-link");
-  redirection.setAttribute("role", "link");
-  redirection.setAttribute("aria-label", "navigation principale");
-
-  main.appendChild(errorWrapper);
-  errorWrapper.appendChild(error);
-  errorWrapper.appendChild(redirection);
 
   let choosenPhotographer = null;
   let isIdExisting = false;
 
   if (!photographers || photographers.length === 0) {
-    errorWrapper.style.display = "block";
+    errorMessage.displayErrorMessage();
     photographerInformations.style.display = "none";
   } else {
     photographers.forEach((photographer) => {
@@ -52,7 +36,7 @@ async function displayPhotographer() {
     );
     photographerName = choosenPhotographer.name;
   } else {
-    errorWrapper.style.display = "block";
+    errorMessage.displayErrorMessage();
     photographerInformations.style.display = "none";
   }
 
@@ -62,81 +46,97 @@ async function displayPhotographer() {
 
   const photographerModel = photographerInformationsTemplate(choosenPhotographer);
   const photographerInformationsCard = photographerModel.setPhotographerCard();
-  handleModal();
-  handleForm(photographerName);
+
+  const modalForm = new HandleFormClass();
+  modalForm.handleModal();
+  modalForm.handleForm(photographerName);
   return photographerInformationsCard;
 }
 
-async function handleModal() {
-  const openFormButton = document.getElementsByClassName("contact-button")[0];
-  const formClass = new HandleFormClass();
-  openFormButton.addEventListener("click", () => {
-    const formFields = formClass.getFormFields();
-    formClass.displayModal();
+const displayMedia = async () => {
+  const { medias } = await getMedia();
+  const currentUrl = new URLSearchParams(window.location.search);
+  const photographerId = currentUrl.get("id");
 
-    formFields.forEach((field) => {
-      field.messageNode.setAttribute("data-error-visible", "false");
-      field.accessibilityMessage.setAttribute("aria-invalid", "false");
+  if (!medias || medias.length === 0) {
+    return;
+  }
+
+  console.log("medias", medias);
+  console.log("photographerId", photographerId);
+  if (medias) {
+    medias.find((media) => {
+      if (media.photographerId === Number(photographerId)) {
+        const photographerMedia = mediaCard({
+          title: `${media.title}`,
+          likes: `${media.likes}`,
+          photographerId: `${media.photographerId}`,
+          mediaFile: `${media.video ? media.video : media.image}`,
+        });
+
+        console.log("photographerMedia", photographerMedia);
+
+        const fileMedia = photographerMedia.mediaFile;
+        const validImageType = ["jpg"];
+        const fileType = fileMedia.includes(validImageType);
+
+        const mediaSection = document.getElementsByClassName("medias")[0];
+        const mediaWrapper = document.createElement("article");
+        mediaSection.appendChild(mediaWrapper);
+
+        const mediaPath = `./assets/images/${photographerId}/${fileMedia}`;
+
+        if (fileType) {
+          const media = document.createElement("img");
+          media.classList.add("media");
+          media.setAttribute("alt", `${photographerMedia.title}`);
+          media.setAttribute("src", `${mediaPath}`);
+          mediaWrapper.appendChild(media);
+        } else {
+          const video = document.createElement("video");
+          const source = document.createElement("source");
+          const link = document.createElement("a");
+          video.classList.add("media");
+          video.setAttribute("controls", true);
+          video.setAttribute("aria-label", `${photographerMedia.title}`);
+          source.setAttribute("src", `${mediaPath}`);
+          link.setAttribute("src", `${mediaPath}`);
+          link.textContent = "MP4";
+          mediaWrapper.appendChild(video);
+          video.appendChild(source);
+          video.appendChild(link);
+        }
+
+        const mediaInformations = document.createElement("div");
+        mediaInformations.classList.add("media-informations");
+        mediaWrapper.appendChild(mediaInformations);
+
+        const mediaTitle = document.createElement("h2");
+        mediaTitle.textContent = `${photographerMedia.title}`;
+        mediaTitle.classList.add("media-title");
+        mediaInformations.appendChild(mediaTitle);
+
+        const likesWrapper = document.createElement("span");
+        likesWrapper.classList.add("likes-wrapper");
+        mediaInformations.appendChild(likesWrapper);
+
+        const likes = document.createElement("p");
+        likes.classList.add("likes-number");
+        likes.textContent = `${media.likes}`;
+        likesWrapper.appendChild(likes);
+
+        const likeIcon = document.createElement("img");
+        likeIcon.setAttribute("src", "./assets/icons/like-icon.png");
+        likeIcon.setAttribute("alt", "icône de coeur");
+        likesWrapper.appendChild(likeIcon);
+      }
     });
-  });
-
-  const closeIcon = document.getElementsByClassName("close-icon")[0];
-  closeIcon.addEventListener("click", formClass.closeModal);
-
-  closeIcon.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
-      formClass.closeModal();
-    }
-  });
-
-  const modal = document.getElementById("contact-modal");
-  modal.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      formClass.closeModal();
-    }
-  });
-}
-
-const form = document.getElementsByClassName("form-wrapper")[0];
-
-const validate = () => {
-  const formClass = new HandleFormClass();
-  const formFields = formClass.getFormFields();
-  let areAllFieldsValids = true;
-
-  formFields.forEach((field) => {
-    field.messageNode.setAttribute("data-error-visible", field.isInvalid ? "true" : "false");
-    field.accessibilityMessage.setAttribute("aria-invalid", field.isInvalid ? "true" : "false");
-
-    if (field.isInvalid) {
-      areAllFieldsValids = false;
-      return;
-    }
-  });
-
-  if (areAllFieldsValids) {
-    formFields.forEach((field) => {
-      console.log(field.fieldName, field.value);
-    });
-
-    form.reset();
-    formClass.closeModal();
-    sendNotification();
   }
 };
 
-async function handleForm(photographerName) {
-  const formTitle = document.getElementsByClassName("modal-title_photographer")[0];
-  formTitle.textContent = ` ${photographerName}`;
-
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    validate();
-  });
-}
-
 async function init() {
   displayPhotographer();
+  displayMedia();
 }
 
 init();

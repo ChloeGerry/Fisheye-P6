@@ -1,7 +1,13 @@
+import { sendNotification } from "./notification.js";
+
 export class HandleFormClass {
   constructor() {
     this.modalBackground = document.getElementsByClassName("modal-background")[0];
+    this.openFormButton = document.getElementsByClassName("contact-button")[0];
     this.modal = document.getElementById("contact-modal");
+    this.form = document.getElementsByClassName("form-wrapper")[0];
+    this.formTitle = document.getElementsByClassName("modal-title_photographer")[0];
+    this.closeIcon = document.getElementsByClassName("close-icon")[0];
     this.firstNameErrorMessage = document.getElementsByClassName("first-name-error-message")[0];
     this.firstNameInput = document.getElementById("prenom");
     this.lastNameErrorMessage = document.getElementsByClassName("last-name-error-message")[0];
@@ -63,5 +69,65 @@ export class HandleFormClass {
     ];
 
     return formFields;
+  };
+
+  handleModal = () => {
+    this.openFormButton.addEventListener("click", () => {
+      const formFields = this.getFormFields();
+      this.displayModal();
+
+      formFields.forEach((field) => {
+        field.messageNode.setAttribute("data-error-visible", "false");
+        field.accessibilityMessage.setAttribute("aria-invalid", "false");
+      });
+    });
+
+    this.closeIcon.addEventListener("click", this.closeModal);
+
+    this.closeIcon.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        this.closeModal();
+      }
+    });
+
+    this.modal.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        this.closeModal();
+      }
+    });
+  };
+
+  validate = () => {
+    const formFields = this.getFormFields();
+    let areAllFieldsValids = true;
+
+    formFields.forEach((field) => {
+      field.messageNode.setAttribute("data-error-visible", field.isInvalid ? "true" : "false");
+      field.accessibilityMessage.setAttribute("aria-invalid", field.isInvalid ? "true" : "false");
+
+      if (field.isInvalid) {
+        areAllFieldsValids = false;
+        return;
+      }
+    });
+
+    if (areAllFieldsValids) {
+      formFields.forEach((field) => {
+        console.log(field.fieldName, field.value);
+      });
+
+      this.form.reset();
+      this.closeModal();
+      sendNotification();
+    }
+  };
+
+  handleForm = (photographerName) => {
+    this.formTitle.textContent = ` ${photographerName}`;
+
+    this.form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      this.validate();
+    });
   };
 }

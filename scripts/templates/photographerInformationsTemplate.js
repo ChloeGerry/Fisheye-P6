@@ -1,6 +1,6 @@
 export function photographerInformationsTemplate(photographers) {
   const { name, portrait, city, country, tagline } = photographers;
-  const picture = `assets/photographers/${portrait}`;
+  const picture = `./assets/photographers/${portrait}`;
 
   function setPhotographerCard() {
     const photographerInformations = document.getElementsByClassName(
