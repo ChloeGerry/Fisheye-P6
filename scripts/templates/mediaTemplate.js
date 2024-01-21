@@ -15,6 +15,7 @@ export function mediaTemplate(photographerMedia) {
     media.classList.add("media");
     media.setAttribute("alt", `${photographerMedia.title}`);
     media.setAttribute("src", `${mediaPath}`);
+    media.setAttribute("tabindex", 0);
     media.setAttribute("role", "link");
     media.setAttribute("aria-label", "ouvrir le carousel de medias");
     mediaWrapper.appendChild(media);
@@ -22,7 +23,8 @@ export function mediaTemplate(photographerMedia) {
     const video = document.createElement("video");
     video.classList.add("media");
     video.setAttribute("controls", true);
-    video.setAttribute("aria-label", `${photographerMedia.title}`);
+    video.setAttribute("role", "link");
+    video.setAttribute("aria-label", `ouvrir ${photographerMedia.title}`);
     mediaWrapper.appendChild(video);
 
     const source = document.createElement("source");
@@ -38,6 +40,8 @@ export function mediaTemplate(photographerMedia) {
 
   const mediaInformations = document.createElement("div");
   mediaInformations.classList.add("media-informations");
+  mediaInformations.setAttribute("aria-label", "informations sur le media");
+  mediaInformations.setAttribute("tabindex", 0);
   mediaWrapper.appendChild(mediaInformations);
 
   const mediaTitle = document.createElement("h2");
@@ -51,12 +55,17 @@ export function mediaTemplate(photographerMedia) {
 
   const likes = document.createElement("p");
   likes.classList.add("likes-number");
+  likes.setAttribute("tabindex", 0);
+  likes.setAttribute("aria-label", "nombre de j'aime du media");
   likes.textContent = `${photographerMedia.likes}`;
   likesWrapper.appendChild(likes);
 
   const likeIcon = document.createElement("img");
   likeIcon.setAttribute("src", "./assets/icons/like-icon.png");
   likeIcon.setAttribute("alt", "icône d'un coeur");
+  likeIcon.setAttribute("role", "button");
+  likeIcon.setAttribute("tabindex", 0);
+  likeIcon.setAttribute("aria-label", "incrémentation du nombre de j'aime du média");
   likesWrapper.appendChild(likeIcon);
 
   return mediaWrapper;

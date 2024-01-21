@@ -10,7 +10,7 @@ export function photographerTemplate(data) {
     const photographerLink = document.createElement("a");
     photographerLink.setAttribute("href", `photographer.html?id=${id}`);
     photographerLink.setAttribute("role", "link");
-    photographerLink.setAttribute("aria-label", "navigation secondaire");
+    photographerLink.setAttribute("aria-label", `navigation secondaire vers la page de ${name}`);
     photographerLink.classList.add("photographer-link");
     article.appendChild(photographerLink);
 
@@ -22,21 +22,25 @@ export function photographerTemplate(data) {
 
     const photographerName = document.createElement("h2");
     photographerName.textContent = `${name}`;
+    photographerName.setAttribute("tabindex", 0);
     photographerName.classList.add("photographer-name");
     photographerLink.appendChild(photographerName);
 
     const location = document.createElement("p");
     location.textContent = `${city}, ${country}`;
+    location.setAttribute("tabindex", 0);
     location.classList.add("photographer-location");
     article.appendChild(location);
 
     const taglineText = document.createElement("p");
     taglineText.textContent = `${tagline}`;
+    taglineText.setAttribute("tabindex", 0);
     taglineText.classList.add("photographer-tagline");
     article.appendChild(taglineText);
 
     const photographerPrice = document.createElement("p");
     photographerPrice.textContent = `${price}€/jour`;
+    photographerPrice.setAttribute("tabindex", 0);
     photographerPrice.classList.add("photographer-price");
     article.appendChild(photographerPrice);
 
