@@ -12,34 +12,34 @@ export function photographerTemplate(data) {
     photographerLink.setAttribute("role", "link");
     photographerLink.setAttribute("aria-label", "navigation secondaire");
     photographerLink.classList.add("photographer-link");
+    article.appendChild(photographerLink);
 
     const image = document.createElement("img");
     image.setAttribute("src", `${picture}`);
     image.setAttribute("alt", `${name}`);
     image.classList.add("photographer-picture");
+    photographerLink.appendChild(image);
 
     const photographerName = document.createElement("h2");
     photographerName.textContent = `${name}`;
     photographerName.classList.add("photographer-name");
+    photographerLink.appendChild(photographerName);
 
     const location = document.createElement("p");
     location.textContent = `${city}, ${country}`;
     location.classList.add("photographer-location");
+    article.appendChild(location);
 
     const taglineText = document.createElement("p");
     taglineText.textContent = `${tagline}`;
     taglineText.classList.add("photographer-tagline");
+    article.appendChild(taglineText);
 
     const photographerPrice = document.createElement("p");
     photographerPrice.textContent = `${price}€/jour`;
     photographerPrice.classList.add("photographer-price");
-
-    article.appendChild(photographerLink);
-    photographerLink.appendChild(image);
-    photographerLink.appendChild(photographerName);
-    article.appendChild(location);
-    article.appendChild(taglineText);
     article.appendChild(photographerPrice);
+
     return article;
   }
   return { setPhotographersCards };

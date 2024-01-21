@@ -19,10 +19,6 @@
   height: 50px;
 }
 
-#main {
-  padding-bottom: 21em;
-}
-
 .error-wrapper {
   display: none;
   margin: 12.5em 0;
@@ -96,6 +92,7 @@
   width: 21.875em;
   height: 18.75em;
   object-fit: cover;
+  border-radius: 5px;
 }
 
 .media-informations {

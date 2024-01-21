@@ -1,77 +1,63 @@
-import { mediaCard } from "../factories/MediaFactory";
+export function mediaTemplate(photographerMedia) {
+  const fileMedia = photographerMedia.mediaFile;
+  const validImageType = ["jpg"];
+  const fileType = fileMedia.includes(validImageType);
 
-export function mediaTemplate(data) {
-  data.find((media) => {
-    if (media.photographerId === Number(photographerId)) {
-      const photographerMedia = mediaCard({
-        title: `${media.title}`,
-        likes: `${media.likes}`,
-        mediaFile: `${media.video ? media.video : media.image}`,
-      });
+  const mediaWrapper = document.createElement("article");
+  mediaWrapper.setAttribute("aria-label", "présentation d'une oeuvre du photographe");
 
-      console.log("photographerMedia", photographerMedia);
+  const currentUrl = new URLSearchParams(window.location.search);
+  const photographerId = currentUrl.get("id");
+  const mediaPath = `./assets/images/${photographerId}/${fileMedia}`;
 
-      const fileMedia = photographerMedia.mediaFile;
-      const validImageType = ["jpg"];
-      const fileType = fileMedia.includes(validImageType);
+  if (fileType) {
+    const media = document.createElement("img");
+    media.classList.add("media");
+    media.setAttribute("alt", `${photographerMedia.title}`);
+    media.setAttribute("src", `${mediaPath}`);
+    media.setAttribute("role", "link");
+    media.setAttribute("aria-label", "ouvrir le carousel de medias");
+    mediaWrapper.appendChild(media);
+  } else {
+    const video = document.createElement("video");
+    video.classList.add("media");
+    video.setAttribute("controls", true);
+    video.setAttribute("aria-label", `${photographerMedia.title}`);
+    mediaWrapper.appendChild(video);
 
-      const mediaSection = document.getElementsByClassName("media")[0];
-      const mediaWrapper = document.createElement("article");
-      mediaSection.appendChild(mediaWrapper);
+    const source = document.createElement("source");
+    source.setAttribute("src", `${mediaPath}`);
+    video.appendChild(source);
 
-      if (fileType) {
-        const media = document.createElement("img");
-        media.setAttribute("alt", "");
-        mediaWrapper.appendChild(media);
-      } else {
-        const media = document.createElement("video");
-        mediaWrapper.appendChild(media);
-      }
-    }
-  });
+    const link = document.createElement("a");
+    link.setAttribute("src", `${mediaPath}`);
+    link.setAttribute("aria-label", "télécharger la vidéo");
+    link.textContent = "MP4";
+    video.appendChild(link);
+  }
 
-  // const { name, portrait, city, country, tagline, price, id } = medias;
-  // const media = `assets/images/${photographerId}/${portrait}`;
+  const mediaInformations = document.createElement("div");
+  mediaInformations.classList.add("media-informations");
+  mediaWrapper.appendChild(mediaInformations);
 
-  // function setPhotographersCards() {
-  //   const article = document.createElement("article");
-  //   article.setAttribute("aria-label", "présentation d'un photographe");
-  //   article.classList.add("photographer-card");
+  const mediaTitle = document.createElement("h2");
+  mediaTitle.textContent = `${photographerMedia.title}`;
+  mediaTitle.classList.add("media-title");
+  mediaInformations.appendChild(mediaTitle);
 
-  //   const photographerLink = document.createElement("a");
-  //   photographerLink.setAttribute("href", `photographer.html?id=${id}`);
-  //   photographerLink.setAttribute("role", "link");
-  //   photographerLink.setAttribute("aria-label", "navigation secondaire");
-  //   photographerLink.classList.add("photographer-link");
+  const likesWrapper = document.createElement("span");
+  likesWrapper.classList.add("likes-wrapper");
+  mediaInformations.appendChild(likesWrapper);
 
-  //   const image = document.createElement("img");
-  //   image.setAttribute("src", `${picture}`);
-  //   image.setAttribute("alt", `${name}`);
-  //   image.classList.add("photographer-picture");
+  const likes = document.createElement("p");
+  likes.classList.add("likes-number");
+  likes.textContent = `${photographerMedia.likes}`;
+  likesWrapper.appendChild(likes);
 
-  //   const photographerName = document.createElement("h2");
-  //   photographerName.textContent = `${name}`;
-  //   photographerName.classList.add("photographer-name");
+  const likeIcon = document.createElement("img");
+  likeIcon.setAttribute("src", "./assets/icons/like-icon.png");
+  likeIcon.setAttribute("alt", "icône d'un coeur");
+  likesWrapper.appendChild(likeIcon);
 
-  //   const location = document.createElement("p");
-  //   location.textContent = `${city}, ${country}`;
-  //   location.classList.add("photographer-location");
-
-  //   const taglineText = document.createElement("p");
-  //   taglineText.textContent = `${tagline}`;
-  //   taglineText.classList.add("photographer-tagline");
-
-  //   const photographerPrice = document.createElement("p");
-  //   photographerPrice.textContent = `${price}€/jour`;
-  //   photographerPrice.classList.add("photographer-price");
-
-  //   article.appendChild(photographerLink);
-  //   photographerLink.appendChild(image);
-  //   photographerLink.appendChild(photographerName);
-  //   article.appendChild(location);
-  //   article.appendChild(taglineText);
-  //   article.appendChild(photographerPrice);
-  //   return article;
-  // }
-  // return { setPhotographersCards };
+  return mediaWrapper;
 }

@@ -13,11 +13,10 @@ export const sendNotification = () => {
   notificationWrapper.style.top = "4%";
   notificationWrapper.style.left = "50%";
   notificationWrapper.style.position = "absolute";
+  main.appendChild(notificationWrapper);
 
   const notificationMessage = document.createElement("p");
   notificationMessage.textContent = "Message envoyé avec succès !";
-
-  main.appendChild(notificationWrapper);
   notificationWrapper.appendChild(notificationMessage);
 
   setTimeout(() => {
