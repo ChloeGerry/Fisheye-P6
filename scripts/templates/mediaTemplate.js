@@ -61,7 +61,7 @@ export function mediaTemplate(photographerMedia) {
   likesWrapper.appendChild(likes);
 
   const likeIcon = document.createElement("img");
-  likeIcon.setAttribute("src", "./assets/icons/like-icon.png");
+  likeIcon.setAttribute("src", "./assets/icons/like-icon.svg");
   likeIcon.setAttribute("alt", "icône d'un coeur");
   likeIcon.setAttribute("role", "button");
   likeIcon.setAttribute("tabindex", 0);

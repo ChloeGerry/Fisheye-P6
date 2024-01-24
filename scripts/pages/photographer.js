@@ -5,6 +5,7 @@ import { getMedia } from "../utils/getMedia.js";
 import { mediaCard } from "../factories/MediaFactory.js";
 import { PhotographerErrorMessage } from "../utils/ErrorMessageClass.js";
 import { mediaTemplate } from "../templates/mediaTemplate.js";
+import { setFilteredMedias } from "../utils/filteredMedias.js";
 
 async function displayPhotographer() {
   const { photographers } = await getPhotographers();
@@ -61,6 +62,8 @@ const displayMedia = async () => {
     return;
   }
 
+  const photographerMedias = [];
+
   if (medias) {
     const currentUrl = new URLSearchParams(window.location.search);
     const photographerId = currentUrl.get("id");
@@ -72,13 +75,18 @@ const displayMedia = async () => {
           likes: `${media.likes}`,
           photographerId: `${media.photographerId}`,
           mediaFile: `${media.video ? media.video : media.image}`,
+          date: `${media.date}`,
         });
 
-        const mediaSection = document.getElementsByClassName("medias")[0];
+        photographerMedias.push(photographerMedia);
+
+        const mediasWrapper = document.getElementsByClassName("medias-wrapper")[0];
         const mediaModel = mediaTemplate(photographerMedia);
-        mediaSection.appendChild(mediaModel);
+        mediasWrapper.appendChild(mediaModel);
       }
     });
+
+    setFilteredMedias(photographerMedias);
   }
 };
 
