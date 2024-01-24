@@ -177,6 +177,30 @@
   margin: 0;
 }
 
+.medias-likes-wrapper {
+  background-color: #db8876;
+  padding: 0.5em 1.5em;
+  display: flex;
+  gap: 2em;
+  width: fit-content;
+  position: fixed;
+  z-index: 1;
+  bottom: 0px;
+  right: 2.25em;
+  font-size: 1.5em;
+  font-weight: 500;
+  border-radius: 5px;
+}
+
+.total-medias-likes-wrapper {
+  display: flex;
+  gap: 0.25em;
+}
+
+.media-likes-text {
+  margin: 0;
+}
+
 .contact-button {
   font-size: 1.25em;
   font-weight: bold;

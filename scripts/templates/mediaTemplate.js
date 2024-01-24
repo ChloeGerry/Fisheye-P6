@@ -13,8 +13,8 @@ export function mediaTemplate(photographerMedia) {
   if (fileType) {
     const media = document.createElement("img");
     media.classList.add("media");
-    media.setAttribute("alt", `${photographerMedia.title}`);
-    media.setAttribute("src", `${mediaPath}`);
+    media.setAttribute("alt", photographerMedia.title);
+    media.setAttribute("src", mediaPath);
     media.setAttribute("tabindex", 0);
     media.setAttribute("role", "link");
     media.setAttribute("aria-label", "ouvrir le carousel de medias");
@@ -28,11 +28,11 @@ export function mediaTemplate(photographerMedia) {
     mediaWrapper.appendChild(video);
 
     const source = document.createElement("source");
-    source.setAttribute("src", `${mediaPath}`);
+    source.setAttribute("src", mediaPath);
     video.appendChild(source);
 
     const link = document.createElement("a");
-    link.setAttribute("src", `${mediaPath}`);
+    link.setAttribute("src", mediaPath);
     link.setAttribute("aria-label", "télécharger la vidéo");
     link.textContent = "MP4";
     video.appendChild(link);
@@ -45,7 +45,7 @@ export function mediaTemplate(photographerMedia) {
   mediaWrapper.appendChild(mediaInformations);
 
   const mediaTitle = document.createElement("h2");
-  mediaTitle.textContent = `${photographerMedia.title}`;
+  mediaTitle.textContent = photographerMedia.title;
   mediaTitle.classList.add("media-title");
   mediaInformations.appendChild(mediaTitle);
 
@@ -56,14 +56,17 @@ export function mediaTemplate(photographerMedia) {
   const likes = document.createElement("p");
   likes.classList.add("likes-number");
   likes.setAttribute("tabindex", 0);
+  likes.setAttribute("data-id", photographerMedia.id);
   likes.setAttribute("aria-label", "nombre de j'aime du media");
-  likes.textContent = `${photographerMedia.likes}`;
+  likes.textContent = photographerMedia.likes;
   likesWrapper.appendChild(likes);
 
   const likeIcon = document.createElement("img");
   likeIcon.setAttribute("src", "./assets/icons/like-icon.svg");
   likeIcon.setAttribute("alt", "icône d'un coeur");
   likeIcon.setAttribute("role", "button");
+  likeIcon.classList.add("like-icon");
+  likeIcon.setAttribute("data-id", photographerMedia.id);
   likeIcon.setAttribute("tabindex", 0);
   likeIcon.setAttribute("aria-label", "incrémentation du nombre de j'aime du média");
   likesWrapper.appendChild(likeIcon);

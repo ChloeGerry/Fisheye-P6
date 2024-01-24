@@ -39,8 +39,8 @@ export function photographerInformationsTemplate(photographers) {
     photographerInformations.append(contactButton);
 
     const photographerPicture = document.createElement("img");
-    photographerPicture.setAttribute("src", `${picture}`);
-    photographerPicture.setAttribute("alt", `${name}`);
+    photographerPicture.setAttribute("src", picture);
+    photographerPicture.setAttribute("alt", name);
     photographerPicture.setAttribute("tabindex", 0);
     photographerPicture.classList.add("photographer-picture");
     photographerInformations.append(photographerPicture);

@@ -15,13 +15,13 @@ export function photographerTemplate(data) {
     article.appendChild(photographerLink);
 
     const image = document.createElement("img");
-    image.setAttribute("src", `${picture}`);
-    image.setAttribute("alt", `${name}`);
+    image.setAttribute("src", picture);
+    image.setAttribute("alt", name);
     image.classList.add("photographer-picture");
     photographerLink.appendChild(image);
 
     const photographerName = document.createElement("h2");
-    photographerName.textContent = `${name}`;
+    photographerName.textContent = name;
     photographerName.setAttribute("tabindex", 0);
     photographerName.classList.add("photographer-name");
     photographerLink.appendChild(photographerName);
@@ -33,7 +33,7 @@ export function photographerTemplate(data) {
     article.appendChild(location);
 
     const taglineText = document.createElement("p");
-    taglineText.textContent = `${tagline}`;
+    taglineText.textContent = tagline;
     taglineText.setAttribute("tabindex", 0);
     taglineText.classList.add("photographer-tagline");
     article.appendChild(taglineText);

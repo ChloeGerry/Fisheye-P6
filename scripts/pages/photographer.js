@@ -6,6 +6,7 @@ import { mediaCard } from "../factories/MediaFactory.js";
 import { PhotographerErrorMessage } from "../utils/ErrorMessageClass.js";
 import { mediaTemplate } from "../templates/mediaTemplate.js";
 import { setFilteredMedias } from "../utils/filteredMedias.js";
+import { HandleLikesClass } from "../utils/HandleLikesClass.js";
 
 async function displayPhotographer() {
   const { photographers } = await getPhotographers();
@@ -37,6 +38,8 @@ async function displayPhotographer() {
       (photographer) => photographer.id === Number(photographerIdToDisplay)
     );
     photographerName = choosenPhotographer.name;
+    const mediasLikes = new HandleLikesClass();
+    mediasLikes.displayPhotographerPrice(choosenPhotographer.price);
   } else {
     errorMessage.displayErrorMessage();
     photographerInformations.style.display = "none";
@@ -71,11 +74,12 @@ const displayMedia = async () => {
     medias.find((media) => {
       if (media.photographerId === Number(photographerId)) {
         const photographerMedia = mediaCard({
-          title: `${media.title}`,
-          likes: `${media.likes}`,
-          photographerId: `${media.photographerId}`,
-          mediaFile: `${media.video ? media.video : media.image}`,
-          date: `${media.date}`,
+          title: media.title,
+          likes: media.likes,
+          photographerId: media.photographerId,
+          mediaFile: media.video ? media.video : media.image,
+          date: media.date,
+          id: media.id,
         });
 
         photographerMedias.push(photographerMedia);
@@ -87,6 +91,12 @@ const displayMedia = async () => {
     });
 
     setFilteredMedias(photographerMedias);
+
+    const mediasLikes = new HandleLikesClass();
+    photographerMedias.forEach((media) => {
+      mediasLikes.displayMediasLikes(media.likes);
+      mediasLikes.setLikes(media.likes, media.id);
+    });
   }
 };
 

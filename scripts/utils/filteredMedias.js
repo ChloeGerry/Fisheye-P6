@@ -1,5 +1,23 @@
 import { mediaTemplate } from "../templates/mediaTemplate.js";
 
+const updatePhotographerMedias = (photographerMedias, sortFunction) => {
+  if (photographerMedias) {
+    sortPhotographerMedias(photographerMedias, sortFunction);
+  }
+};
+
+const sortPhotographerMedias = (photographerMedias, sortFunction) => {
+  const filteredMedias = photographerMedias.sort(sortFunction);
+
+  const mediasWrapper = document.getElementsByClassName("medias-wrapper")[0];
+  mediasWrapper.innerHTML = "";
+
+  filteredMedias.map((filteredMedia) => {
+    const mediaModel = mediaTemplate(filteredMedia);
+    mediasWrapper.appendChild(mediaModel);
+  });
+};
+
 export const setFilteredMedias = async (photographerMedias) => {
   const filterItemWrapper = document.getElementsByClassName("filter-item_wrapper")[0];
 
@@ -70,51 +88,24 @@ export const setFilteredMedias = async (photographerMedias) => {
     }
   });
 
-  filterItemOptionPopular.addEventListener("click", () => {
-    if (photographerMedias) {
-      const filteredMedias = photographerMedias.sort(({ likes: a }, { likes: b }) => {
-        return b - a;
-      });
+  const sortedMedias = [
+    {
+      domFilterButton: filterItemOptionPopular,
+      sortFunction: ({ likes: a }, { likes: b }) => b - a,
+    },
+    {
+      domFilterButton: filterItemOptionDate,
+      sortFunction: ({ date: a }, { date: b }) => new Date(a) - new Date(b),
+    },
+    {
+      domFilterButton: filterItemOptionTitle,
+      sortFunction: ({ title: a }, { title: b }) => (a < b ? -1 : 1),
+    },
+  ];
 
-      const mediasWrapper = document.getElementsByClassName("medias-wrapper")[0];
-      mediasWrapper.innerHTML = "";
-
-      filteredMedias.map((filteredMedia) => {
-        const mediaModel = mediaTemplate(filteredMedia);
-        mediasWrapper.appendChild(mediaModel);
-      });
-    }
-  });
-
-  filterItemOptionDate.addEventListener("click", () => {
-    if (photographerMedias) {
-      const filteredMedias = photographerMedias.sort(
-        ({ date: a }, { date: b }) => new Date(a) - new Date(b)
-      );
-
-      const mediasWrapper = document.getElementsByClassName("medias-wrapper")[0];
-      mediasWrapper.innerHTML = "";
-
-      filteredMedias.map((filteredMedia) => {
-        const mediaModel = mediaTemplate(filteredMedia);
-        mediasWrapper.appendChild(mediaModel);
-      });
-    }
-  });
-
-  filterItemOptionTitle.addEventListener("click", () => {
-    if (photographerMedias) {
-      const filteredMedias = photographerMedias.sort(({ title: a }, { title: b }) =>
-        a < b ? -1 : 1
-      );
-
-      const mediasWrapper = document.getElementsByClassName("medias-wrapper")[0];
-      mediasWrapper.innerHTML = "";
-
-      filteredMedias.map((filteredMedia) => {
-        const mediaModel = mediaTemplate(filteredMedia);
-        mediasWrapper.appendChild(mediaModel);
-      });
-    }
+  sortedMedias.forEach((sortedMedia) => {
+    sortedMedia.domFilterButton.addEventListener("click", () => {
+      updatePhotographerMedias(photographerMedias, sortedMedia.sortFunction);
+    });
   });
 };
