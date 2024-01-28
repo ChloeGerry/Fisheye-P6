@@ -65,11 +65,10 @@ const displayMedia = async () => {
     return;
   }
 
-  const photographerMedias = [];
-
   if (medias) {
     const currentUrl = new URLSearchParams(window.location.search);
     const photographerId = currentUrl.get("id");
+    const photographerMedias = [];
 
     medias.find((media) => {
       if (media.photographerId === Number(photographerId)) {
@@ -91,13 +90,16 @@ const displayMedia = async () => {
     });
 
     setFilteredMedias(photographerMedias);
-
-    const mediasLikes = new HandleLikesClass();
-    photographerMedias.forEach((media) => {
-      mediasLikes.displayMediasLikes(media.likes);
-      mediasLikes.setLikes(media.likes, media.id);
-    });
+    updateMediasLikes(photographerMedias);
   }
+};
+
+export const updateMediasLikes = (photographerMedias) => {
+  const mediasLikes = new HandleLikesClass();
+  photographerMedias.forEach((media) => {
+    mediasLikes.displayMediasLikes(media.likes);
+    mediasLikes.setLikes(media.likes, media.id);
+  });
 };
 
 async function init() {

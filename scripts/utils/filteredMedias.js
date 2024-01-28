@@ -1,8 +1,10 @@
+import { updateMediasLikes } from "../pages/photographer.js";
 import { mediaTemplate } from "../templates/mediaTemplate.js";
 
 const updatePhotographerMedias = (photographerMedias, sortFunction) => {
   if (photographerMedias) {
     sortPhotographerMedias(photographerMedias, sortFunction);
+    updateMediasLikes(photographerMedias);
   }
 };
 
@@ -36,18 +38,13 @@ export const setFilteredMedias = async (photographerMedias) => {
   filterItemWrapper.appendChild(optionsItemsWrapper);
 
   const filterItemOptionPopularWrapper = document.createElement("div");
-  filterItemOptionPopularWrapper.innerHTML = `<img src="./assets/icons/arrow.svg" alt="flèche" class="arrow-icon">`;
+  filterItemOptionPopularWrapper.innerHTML = `
+  <button class="item popular-item" value="Popularité" role="listbox" aria-selected="false" aria-label="popularité" tabindex="0">Popularité</button>
+  <img src="./assets/icons/arrow.svg" alt="flèche" class="arrow-icon" tabindex="0">`;
   filterItemOptionPopularWrapper.classList.add("option-item-popular_wrapper");
   optionsItemsWrapper.appendChild(filterItemOptionPopularWrapper);
 
-  const filterItemOptionPopular = document.createElement("button");
-  filterItemOptionPopular.classList.add("item");
-  filterItemOptionPopular.setAttribute("value", "Popularité");
-  filterItemOptionPopular.setAttribute("role", "listbox");
-  filterItemOptionPopular.setAttribute("aria-selected", "true");
-  filterItemOptionPopular.setAttribute("aria-labelledby", "filter-label");
-  filterItemOptionPopular.textContent = "Popularité";
-  filterItemOptionPopularWrapper.appendChild(filterItemOptionPopular);
+  const filterItemOptionPopular = document.getElementsByClassName("popular-item")[0];
 
   const filterItemOptionDate = document.createElement("button");
   filterItemOptionDate.classList.add("item");
@@ -55,7 +52,8 @@ export const setFilteredMedias = async (photographerMedias) => {
   filterItemOptionDate.setAttribute("value", "Date");
   filterItemOptionDate.setAttribute("role", "listbox");
   filterItemOptionDate.setAttribute("aria-selected", "false");
-  filterItemOptionDate.setAttribute("aria-labelledby", "filter-label");
+  filterItemOptionDate.setAttribute("aria-label", "date");
+  filterItemOptionDate.setAttribute("tabindex", "0");
   filterItemOptionDate.style.display = "none";
   filterItemOptionDate.textContent = "Date";
   optionsItemsWrapper.appendChild(filterItemOptionDate);
@@ -65,28 +63,42 @@ export const setFilteredMedias = async (photographerMedias) => {
   filterItemOptionTitle.setAttribute("value", "Titre");
   filterItemOptionTitle.setAttribute("role", "listbox");
   filterItemOptionTitle.setAttribute("aria-selected", "false");
-  filterItemOptionTitle.setAttribute("aria-labelledby", "filter-label");
+  filterItemOptionTitle.setAttribute("aria-label", "titre");
+  filterItemOptionTitle.setAttribute("tabindex", "0");
   filterItemOptionTitle.style.display = "none";
   filterItemOptionTitle.textContent = "Titre";
   optionsItemsWrapper.appendChild(filterItemOptionTitle);
 
-  const arrow = document.getElementsByClassName("arrow-icon")[0];
-  let isListboxOpen = false;
+  const displayListbox = (eventType) => {
+    const arrow = document.getElementsByClassName("arrow-icon")[0];
+    let isListboxOpen = false;
 
-  arrow.addEventListener("click", () => {
-    isListboxOpen = !isListboxOpen;
+    arrow.addEventListener(`${eventType}`, (event) => {
+      console.log("event.key", event.key);
+      if (event.key === "Enter") {
+        isListboxOpen = !isListboxOpen;
+      }
+      if (eventType === "click") {
+        isListboxOpen = !isListboxOpen;
+      }
 
-    if (isListboxOpen) {
-      filterItemOptionDate.style.display = "block";
-      filterItemOptionTitle.style.display = "block";
-      arrow.style.transform = "rotate(0deg)";
-      filterItemWrapper.style.alignItems = "baseline";
-    } else {
-      filterItemOptionDate.style.display = "none";
-      filterItemOptionTitle.style.display = "none";
-      arrow.style.transform = "rotate(180deg)";
-    }
-  });
+      if (isListboxOpen) {
+        filterItemOptionDate.style.display = "block";
+        filterItemOptionTitle.style.display = "block";
+        arrow.style.transform = "rotate(0deg)";
+        optionsItemsWrapper.setAttribute("aria-expanded", "true");
+        filterItemWrapper.style.alignItems = "baseline";
+      } else {
+        filterItemOptionDate.style.display = "none";
+        filterItemOptionTitle.style.display = "none";
+        optionsItemsWrapper.setAttribute("aria-expanded", "false");
+        arrow.style.transform = "rotate(180deg)";
+      }
+    });
+  };
+
+  displayListbox("click");
+  displayListbox("keydown");
 
   const sortedMedias = [
     {
@@ -104,8 +116,13 @@ export const setFilteredMedias = async (photographerMedias) => {
   ];
 
   sortedMedias.forEach((sortedMedia) => {
+    sortedMedia.domFilterButton.setAttribute("aria-selected", "false");
     sortedMedia.domFilterButton.addEventListener("click", () => {
-      updatePhotographerMedias(photographerMedias, sortedMedia.sortFunction);
+      updatePhotographerMedias(
+        photographerMedias,
+        sortedMedia.sortFunction,
+        sortedMedia.domFilterButton.setAttribute("aria-selected", "true")
+      );
     });
   });
 };

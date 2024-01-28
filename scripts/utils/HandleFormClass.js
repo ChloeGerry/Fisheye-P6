@@ -3,6 +3,7 @@ import { sendNotification } from "./notification.js";
 export class HandleFormClass {
   constructor() {
     this.modalBackground = document.getElementsByClassName("modal-background")[0];
+    this.main = document.getElementById("main");
     this.openFormButton = document.getElementsByClassName("contact-button")[0];
     this.modal = document.getElementById("contact-modal");
     this.form = document.getElementsByClassName("form-wrapper")[0];
@@ -20,6 +21,9 @@ export class HandleFormClass {
 
   displayModal = () => {
     this.modal.setAttribute("aria-hidden", false);
+    this.main.setAttribute("aria-hidden", true);
+    this.main.setAttribute("tabindex", 0);
+    this.modal.setAttribute("tabindex", 1);
     this.modal.style.display = "flex";
 
     this.modalBackground.style.zIndex = "0";
@@ -28,6 +32,9 @@ export class HandleFormClass {
 
   closeModal = () => {
     this.modal.setAttribute("aria-hidden", true);
+    this.main.setAttribute("aria-hidden", false);
+    this.main.setAttribute("tabindex", 1);
+    this.modal.setAttribute("tabindex", 0);
     this.modal.style.display = "none";
 
     this.modalBackground.style.zIndex = "-1";
