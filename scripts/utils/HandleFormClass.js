@@ -21,24 +21,24 @@ export class HandleFormClass {
 
   displayModal = () => {
     this.modal.setAttribute("aria-hidden", false);
+    this.modal.showModal();
     this.main.setAttribute("aria-hidden", true);
-    this.main.setAttribute("tabindex", 0);
-    this.modal.setAttribute("tabindex", 1);
-    this.modal.style.display = "flex";
+    this.main.setAttribute("tabindex", 1);
 
     this.modalBackground.style.zIndex = "0";
     this.modalBackground.style.background = "#c4c4c466";
+    this.modalBackground.style.opacity = "0.8";
   };
 
   closeModal = () => {
     this.modal.setAttribute("aria-hidden", true);
+    this.modal.close();
     this.main.setAttribute("aria-hidden", false);
-    this.main.setAttribute("tabindex", 1);
-    this.modal.setAttribute("tabindex", 0);
-    this.modal.style.display = "none";
+    this.main.setAttribute("tabindex", 0);
 
     this.modalBackground.style.zIndex = "-1";
     this.modalBackground.style.background = "#ffffff";
+    this.modalBackground.style.opacity = "1";
   };
 
   getFormFields = () => {
@@ -92,7 +92,9 @@ export class HandleFormClass {
     this.closeIcon.addEventListener("click", this.closeModal);
 
     this.closeIcon.addEventListener("keydown", (event) => {
+      console.log("event.key", event.key);
       if (event.key === "Enter") {
+        console.log("test");
         this.closeModal();
       }
     });
