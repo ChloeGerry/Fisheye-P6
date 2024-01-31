@@ -7,6 +7,7 @@ import { PhotographerErrorMessage } from "../utils/ErrorMessageClass.js";
 import { mediaTemplate } from "../templates/mediaTemplate.js";
 import { setFilteredMedias } from "../utils/filteredMedias.js";
 import { HandleLikesClass } from "../utils/HandleLikesClass.js";
+import { HandleLightboxClass } from "../utils/HandleLightboxClass.js";
 
 async function displayPhotographer() {
   const { photographers } = await getPhotographers();
@@ -91,6 +92,12 @@ const displayMedia = async () => {
 
     setFilteredMedias(photographerMedias);
     updateMediasLikes(photographerMedias);
+    const lightbox = new HandleLightboxClass();
+    lightbox.handleLightbox();
+    photographerMedias.forEach((media) => {
+      lightbox.displayLightbox(media, photographerId, "click");
+      lightbox.displayLightbox(media, photographerId, "keydown");
+    });
   }
 };
 
@@ -102,7 +109,7 @@ export const updateMediasLikes = (photographerMedias) => {
   });
 };
 
-async function init() {
+function init() {
   displayPhotographer();
   displayMedia();
 }

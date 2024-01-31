@@ -36,7 +36,7 @@
         </h2>
         <img
           src="assets/icons/close.svg"
-          class="close-icon"
+          class="form-close-icon"
           tabindex="0"
           aria-label="fermeture du formulaire"
           role="button"
@@ -122,6 +122,35 @@
           Envoyer
         </button>
       </form>
+    </dialog>
+    <dialog id="lightbox-modal" role="dialog" aria-hidden="true" autofocus tabindex="0">
+      <div class="lightbox-wrapper">
+        <img
+          src="./assets/icons/red-arrow.svg"
+          class="lightbox-close-icon"
+          tabindex="0"
+          aria-label="fermeture de la lightbox"
+          role="button"
+          alt="icône en forme de croix"
+        />
+        <article class="lightbox-media-wrapper"></article>
+      </div>
+      <img
+        src="./assets/icons/left-arrow.svg"
+        class="lightbox-arrow lightbox-left-arrow"
+        tabindex="0"
+        aria-label="défilement du carousel vers la gauche"
+        role="button"
+        alt="flèche qui pointe vers la gauche"
+      />
+      <img
+        src="./assets/icons/right-arrow.svg"
+        class="lightbox-arrow lightbox-right-arrow"
+        tabindex="0"
+        aria-label="défilement du carousel vers la droite"
+        role="button"
+        alt="flèche qui pointe vers la droite"
+      />
     </dialog>
     <script type="module" src="./scripts/pages/photographer.js"></script>
   </body>

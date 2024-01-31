@@ -16,6 +16,7 @@ export function mediaTemplate(photographerMedia) {
     media.setAttribute("alt", photographerMedia.title);
     media.setAttribute("src", mediaPath);
     media.setAttribute("tabindex", 0);
+    media.setAttribute("data-id", photographerMedia.id);
     media.setAttribute("role", "link");
     media.setAttribute("aria-label", "ouvrir le carousel de medias");
     mediaWrapper.appendChild(media);

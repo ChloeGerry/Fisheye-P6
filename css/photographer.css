@@ -239,7 +239,7 @@
   margin-bottom: 1em;
 }
 
-.close-icon {
+.form-close-icon {
   cursor: pointer;
 }
 
@@ -306,4 +306,46 @@
   font-size: 1.125em;
   padding: 1.5em 3em;
   margin: 1.5em 0 0 0;
+}
+
+#lightbox-modal {
+  border: none;
+  padding: 1em 2em 1em 6em;
+}
+
+.lightbox-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+}
+
+.lightbox-media {
+  width: 65.625em;
+  height: 50em;
+  object-fit: cover;
+}
+
+.lightbox-close-icon {
+  margin: 1em 0 0 1.5em;
+}
+
+.lightbox-media-title {
+  color: #901c1c;
+  font-size: 1.5em;
+  font-weight: 400;
+  margin: 0;
+}
+
+.lightbox-arrow {
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+}
+
+.lightbox-left-arrow {
+  left: 3.5%;
+}
+
+.lightbox-right-arrow {
+  right: 1.5%;
 }

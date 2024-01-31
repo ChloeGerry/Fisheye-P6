@@ -8,7 +8,7 @@ export class HandleFormClass {
     this.modal = document.getElementById("contact-modal");
     this.form = document.getElementsByClassName("form-wrapper")[0];
     this.formTitle = document.getElementsByClassName("modal-title_photographer")[0];
-    this.closeIcon = document.getElementsByClassName("close-icon")[0];
+    this.closeIcon = document.getElementsByClassName("form-close-icon")[0];
     this.firstNameErrorMessage = document.getElementsByClassName("first-name-error-message")[0];
     this.firstNameInput = document.getElementById("prenom");
     this.lastNameErrorMessage = document.getElementsByClassName("last-name-error-message")[0];
