@@ -98,6 +98,8 @@ const displayMedia = async () => {
       lightbox.displayLightbox(media, photographerId, "click");
       lightbox.displayLightbox(media, photographerId, "keydown");
     });
+    lightbox.setCarousel(photographerMedias, photographerId, "click");
+    lightbox.setCarousel(photographerMedias, photographerId, "keydown");
   }
 };
 

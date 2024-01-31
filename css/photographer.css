@@ -327,6 +327,7 @@
 
 .lightbox-close-icon {
   margin: 1em 0 0 1.5em;
+  cursor: pointer;
 }
 
 .lightbox-media-title {
@@ -340,6 +341,7 @@
   transform: translate(-50%, -50%);
   position: absolute;
   top: 50%;
+  cursor: pointer;
 }
 
 .lightbox-left-arrow {

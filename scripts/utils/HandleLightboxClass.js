@@ -6,6 +6,9 @@ export class HandleLightboxClass {
     this.lightboxWrapper = document.getElementsByClassName("lightbox-wrapper")[0];
     this.lightboxMediaWrapper = document.getElementsByClassName("lightbox-media-wrapper")[0];
     this.closeIcon = document.getElementsByClassName("lightbox-close-icon")[0];
+    this.lightboxRightArrow = document.getElementsByClassName("lightbox-right-arrow")[0];
+    this.lightboxLeftArrow = document.getElementsByClassName("lightbox-left-arrow")[0];
+    this.slideIndex = 0;
   }
 
   displayLightbox = (photographerMedia, photographerId, eventType) => {
@@ -37,15 +40,45 @@ export class HandleLightboxClass {
   };
 
   handleLightbox = () => {
-    this.closeIcon.addEventListener("click", () => {
-      console.log("click");
-      this.closeLightbox();
-    });
+    this.closeIcon.addEventListener("click", () => this.closeLightbox());
 
     this.closeIcon.addEventListener("keydown", (event) => {
-      console.log("keydown");
       if (event.key === "Enter") {
         this.closeLightbox();
+      }
+    });
+  };
+
+  fillLightbox = (photographerMedias, photographerId) => {
+    const choosenMedia = photographerMedias[this.slideIndex].mediaFile;
+    this.lightboxMediaWrapper.innerHTML = `<img src="./assets/images/${photographerId}/${choosenMedia}" alt="${
+      photographerMedias[this.slideIndex].title
+    }" class="lightbox-media">`;
+    const mediaName = document.getElementsByClassName("lightbox-media-title")[0];
+    mediaName.innerHTML = photographerMedias[this.slideIndex].title;
+  };
+
+  setCarousel = (photographerMedias, photographerId, eventType) => {
+    this.lightboxRightArrow.addEventListener(eventType, (event) => {
+      if (event.key === "ArrowRight" || eventType === "click") {
+        this.slideIndex++;
+
+        if (this.slideIndex === photographerMedias.length) {
+          this.slideIndex = 0;
+        }
+
+        this.fillLightbox(photographerMedias, photographerId);
+      }
+    });
+
+    this.lightboxLeftArrow.addEventListener(eventType, (event) => {
+      if (event.key === "ArrowLeft" || eventType === "click") {
+        if (this.slideIndex === 0) {
+          this.slideIndex = photographerMedias.length;
+        }
+
+        this.slideIndex--;
+        this.fillLightbox(photographerMedias, photographerId);
       }
     });
   };
