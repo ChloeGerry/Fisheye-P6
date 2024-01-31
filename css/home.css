@@ -1,3 +1,5 @@
+@import "./variables.css";
+
 .body {
   font-family: "DM Sans", sans-serif;
   margin: 0;
@@ -8,19 +10,18 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 90px;
   margin: 2.5em 6.25em 6.87em 6.25em;
 }
 
 .mainTitle {
-  color: #901c1c;
-  font-size: 2.25em;
-  font-weight: 400;
+  color: var(--primary-color);
+  font-size: var(--medium-font-size);
+  font-weight: var(--medium-font-weight);
   margin: 0;
 }
 
 .logo {
-  height: 50px;
+  height: 3.125em;
 }
 
 #main {
@@ -34,7 +35,7 @@
 
 .error {
   text-align: center;
-  font-size: 2.25em;
+  font-size: var(--medium-font-size);
 }
 
 .photographer-wrapper {
@@ -65,18 +66,18 @@
 }
 
 .photographer-name {
-  color: #d3573c;
-  font-size: 2.25em;
-  font-weight: 400;
+  color: var(--secondary-color);
+  font-size: var(--medium-font-size);
+  font-weight: var(--medium-font-weight);
   margin: 0.6em 0 0 0;
 }
 
 .photographer-location {
   margin: 0;
-  color: #901c1c;
+  color: var(--primary-color);
   font-size: 1em;
   line-height: 1em;
-  font-weight: 400;
+  font-weight: var(--medium-font-weight);
 }
 
 .photographer-tagline {
@@ -85,7 +86,7 @@
 }
 
 .photographer-price {
-  color: #757575;
+  color: var(--light-grey);
   font-size: 0.56em;
   margin: 0;
 }

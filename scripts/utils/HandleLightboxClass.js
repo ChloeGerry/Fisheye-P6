@@ -13,26 +13,28 @@ export class HandleLightboxClass {
 
   displayLightbox = (photographerMedia, photographerId, eventType) => {
     for (let i = 0; i < this.medias.length; i++) {
-      this.medias[i].addEventListener(`${eventType}`, () => {
-        const mediaId = parseInt(this.medias[i].dataset.id);
-        if (mediaId === photographerMedia.id) {
-          this.lightbox.setAttribute("aria-hidden", "false");
-          this.main.setAttribute("aria-hidden", true);
-          this.main.setAttribute("tabindex", 1);
-          this.lightbox.showModal();
-          const choosenMedia = photographerMedia.mediaFile;
-          this.lightboxMediaWrapper.innerHTML = `<img src="./assets/images/${photographerId}/${choosenMedia}" alt="${photographerMedia.title}" class="lightbox-media">`;
-          const mediaName = document.createElement("h2");
-          mediaName.textContent = photographerMedia.title;
-          mediaName.classList.add("lightbox-media-title");
-          this.lightbox.appendChild(mediaName);
+      this.medias[i].addEventListener(eventType, (event) => {
+        if (event.key === "Enter" || eventType === "click") {
+          const mediaId = parseInt(this.medias[i].dataset.id);
+          if (mediaId === photographerMedia.id) {
+            this.slideIndex = i;
+            this.lightbox.setAttribute("aria-hidden", "false");
+            this.main.setAttribute("aria-hidden", true);
+            this.main.setAttribute("tabindex", 1);
+            this.lightbox.showModal();
+            const choosenMedia = photographerMedia.mediaFile;
+            this.lightboxMediaWrapper.innerHTML = `<img src="./assets/images/${photographerId}/${choosenMedia}" alt="${photographerMedia.title}" class="lightbox-media">`;
+            const mediaName = document.createElement("h2");
+            mediaName.textContent = photographerMedia.title;
+            mediaName.classList.add("lightbox-media-title");
+            this.lightbox.appendChild(mediaName);
+          }
         }
       });
     }
   };
 
   closeLightbox = () => {
-    console.log("closeLightbox");
     this.lightbox.setAttribute("aria-hidden", "true");
     this.lightbox.close();
     this.main.setAttribute("aria-hidden", false);
@@ -50,10 +52,20 @@ export class HandleLightboxClass {
   };
 
   fillLightbox = (photographerMedias, photographerId) => {
+    const validImageType = ["jpg"];
     const choosenMedia = photographerMedias[this.slideIndex].mediaFile;
-    this.lightboxMediaWrapper.innerHTML = `<img src="./assets/images/${photographerId}/${choosenMedia}" alt="${
-      photographerMedias[this.slideIndex].title
-    }" class="lightbox-media">`;
+    const fileType = choosenMedia.includes(validImageType);
+
+    if (fileType) {
+      this.lightboxMediaWrapper.innerHTML = `<img src="./assets/images/${photographerId}/${choosenMedia}" alt="${
+        photographerMedias[this.slideIndex].title
+      }" class="lightbox-media">`;
+    } else {
+      this.lightboxMediaWrapper.innerHTML = `<video controls="true" aria-label="ouvrir ${
+        photographerMedias[this.slideIndex].title
+      }" class="lightbox-media"><source src="./assets/images/${photographerId}/${choosenMedia}" tabindex="0"></source><a src="./assets/images/${photographerId}/${choosenMedia}" aria-label="télécharger la vidéo">MP4</a></video>`;
+    }
+
     const mediaName = document.getElementsByClassName("lightbox-media-title")[0];
     mediaName.innerHTML = photographerMedias[this.slideIndex].title;
   };

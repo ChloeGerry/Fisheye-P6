@@ -1,3 +1,5 @@
+@import "./variables.css";
+
 .body {
   font-family: "DM Sans", sans-serif;
   margin: 0;
@@ -16,7 +18,7 @@
 }
 
 .logo {
-  height: 50px;
+  height: 3.125em;
 }
 
 .error-wrapper {
@@ -26,15 +28,15 @@
 
 .error {
   text-align: center;
-  font-size: 2.25em;
+  font-size: var(--medium-font-size);
 }
 
 .redirection-link {
   display: flow;
   text-align: center;
-  font-size: 2.25em;
+  font-size: var(--medium-font-size);
   text-decoration: none;
-  color: #901c1c;
+  color: var(--primary-color);
 }
 
 .photographer-presentation {
@@ -52,23 +54,23 @@
 }
 
 .photographer-name {
-  color: #d3573c;
-  font-size: 4em;
-  font-weight: 400;
+  color: var(--secondary-color);
+  font-size: var(--large-font-size);
+  font-weight: var(--medium-font-weight);
   margin: 0;
 }
 
 .photographer-location {
-  color: #901c1c;
-  font-size: 1.5em;
-  font-weight: 400;
+  color: var(--primary-color);
+  font-size: var(--small-font-size);
+  font-weight: var(--medium-font-weight);
   margin: 1em 0;
 }
 
 .photographer-tagline {
-  color: #525252;
+  color: var(--dark-grey);
   font-size: 1.125em;
-  font-weight: 400;
+  font-weight: var(--medium-font-weight);
   margin: 0;
 }
 
@@ -101,7 +103,7 @@
 .option-items-wrapper {
   display: flex;
   flex-direction: column;
-  background-color: #901c1c;
+  background-color: var(--primary-color);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   padding: 1em;
   gap: 0.8em;
@@ -110,10 +112,10 @@
 
 .item {
   color: white;
-  background-color: #901c1c;
+  background-color: var(--primary-color);
   border: none;
   font-size: 1.125em;
-  font-weight: 700;
+  font-weight: var(--large-font-weigh);
   cursor: pointer;
   text-align: left;
 }
@@ -125,8 +127,8 @@
 }
 
 .middle-item {
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
+  border-top: 1px solid var(--white-color);
+  border-bottom: 1px solid var(--white-color);
   padding: 0.7em 0.375em;
 }
 
@@ -141,7 +143,7 @@
   width: 21.875em;
   height: 18.75em;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
 }
 
 .media-informations {
@@ -149,14 +151,14 @@
   justify-content: space-between;
   align-items: center;
   width: 21.875em;
-  color: #901c1c;
+  color: var(--primary-color);
   margin-top: 0.5em;
   gap: 0.5em;
 }
 
 .media-title {
-  font-size: 1.5em;
-  font-weight: 400;
+  font-size: var(--small-font-size);
+  font-weight: var(--medium-font-weight);
   margin: 0;
 }
 
@@ -167,8 +169,8 @@
 }
 
 .likes-number {
-  font-size: 1.5em;
-  font-weight: 400;
+  font-size: var(--small-font-size);
+  font-weight: var(--medium-font-weight);
   margin: 0;
 }
 
@@ -177,7 +179,7 @@
 }
 
 .medias-likes-wrapper {
-  background-color: #db8876;
+  background-color: var(--tertiary-color);
   padding: 0.5em 1.5em;
   display: flex;
   gap: 2em;
@@ -186,9 +188,9 @@
   z-index: 1;
   bottom: 0px;
   right: 2.25em;
-  font-size: 1.5em;
+  font-size: var(--small-font-size);
   font-weight: 500;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
 }
 
 .total-medias-likes-wrapper {
@@ -203,18 +205,18 @@
 .contact-button {
   font-size: 1.25em;
   font-weight: bold;
-  color: white;
+  color: var(--white-color);
   padding: 0.9em 0;
   border: none;
-  background-color: #901c1c;
-  border-radius: 5px;
+  background-color: var(--primary-color);
+  border-radius: var(--border-radius);
   cursor: pointer;
   width: 9em;
 }
 
 #contact-modal {
-  border-radius: 5px;
-  background-color: #db8876;
+  border-radius: var(--border-radius);
+  background-color: var(--tertiary-color);
   width: 50%;
   left: 50%;
   top: 130%;
@@ -247,7 +249,7 @@
   display: flex;
   flex-direction: column;
   font-size: 4em;
-  font-weight: 400;
+  font-weight: var(--medium-font-weight);
   margin: 0;
 }
 
@@ -264,7 +266,7 @@
 
 .form-data[data-error]::after {
   content: attr(data-error);
-  color: black;
+  color: var(--black-color);
   display: block;
   text-align: right;
   opacity: 0;
@@ -283,15 +285,15 @@
 .modal-label {
   font-size: 2.5em;
   color: #312e2e;
-  font-weight: 400;
+  font-weight: var(--medium-font-weight);
 }
 
 .modal-input {
   width: 100%;
   height: 2.8em;
   border: none;
-  border-radius: 5px;
-  font-size: 1.5em;
+  border-radius: var(--border-radius);
+  font-size: var(--small-font-size);
 }
 
 .message-input {
@@ -299,9 +301,9 @@
 }
 
 .form-button {
-  background: #901c1c;
-  border-radius: 5px;
-  color: #ffffff;
+  background: var(--primary-color);
+  border-radius: var(--border-radius);
+  color: var(--white-color);
   border: none;
   font-size: 1.125em;
   padding: 1.5em 3em;
@@ -331,9 +333,9 @@
 }
 
 .lightbox-media-title {
-  color: #901c1c;
-  font-size: 1.5em;
-  font-weight: 400;
+  color: var(--primary-color);
+  font-size: var(--small-font-size);
+  font-weight: var(--medium-font-weight);
   margin: 0;
 }
 

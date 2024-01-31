@@ -1,10 +1,14 @@
-import { updateMediasLikes } from "../pages/photographer.js";
+import { updateCarousel, updateMediasLikes } from "../pages/photographer.js";
 import { mediaTemplate } from "../templates/mediaTemplate.js";
 
 const updatePhotographerMedias = (photographerMedias, sortFunction) => {
+  const currentUrl = new URLSearchParams(window.location.search);
+  const photographerId = currentUrl.get("id");
+
   if (photographerMedias) {
     sortPhotographerMedias(photographerMedias, sortFunction);
     updateMediasLikes(photographerMedias);
+    updateCarousel(photographerMedias, photographerId);
   }
 };
 
@@ -73,8 +77,7 @@ export const setFilteredMedias = async (photographerMedias) => {
     const arrow = document.getElementsByClassName("arrow-icon")[0];
     let isListboxOpen = false;
 
-    arrow.addEventListener(`${eventType}`, (event) => {
-      console.log("event.key", event.key);
+    arrow.addEventListener(eventType, (event) => {
       if (event.key === "Enter") {
         isListboxOpen = !isListboxOpen;
       }

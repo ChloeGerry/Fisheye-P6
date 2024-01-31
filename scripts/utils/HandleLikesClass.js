@@ -29,7 +29,7 @@ export class HandleLikesClass {
     mediasLikesWrapper.appendChild(photographerPrice);
   };
 
-  displayMediasLikes = async (likes) => {
+  displayMediasLikes = (likes) => {
     const totalOfMediasLikes = document.getElementsByClassName("media-likes-text")[0];
     this.totalLikes += likes;
     totalOfMediasLikes.textContent = this.totalLikes;
@@ -40,17 +40,19 @@ export class HandleLikesClass {
     const totalOfMediasLikes = document.getElementsByClassName("media-likes-text")[0];
 
     for (let i = 0; i < mediasLikesIcons.length; i++) {
-      mediasLikesIcons[i].addEventListener(`${eventType}`, () => {
-        const likesIconId = parseInt(mediasLikesIcons[i].dataset.id);
-        if (mediaId === likesIconId) {
-          this.likes.forEach((like) => {
-            const numberOfLikes = parseInt(like.dataset.id);
-            if (numberOfLikes === mediaId) {
-              like.textContent = likes += 1;
-              this.totalLikes += 1;
-              totalOfMediasLikes.textContent = this.totalLikes;
-            }
-          });
+      mediasLikesIcons[i].addEventListener(eventType, (event) => {
+        if (event.key === "Enter" || eventType === "click") {
+          const likesIconId = parseInt(mediasLikesIcons[i].dataset.id);
+          if (mediaId === likesIconId) {
+            this.likes.forEach((like) => {
+              const numberOfLikes = parseInt(like.dataset.id);
+              if (numberOfLikes === mediaId) {
+                like.textContent = likes += 1;
+                this.totalLikes += 1;
+                totalOfMediasLikes.textContent = this.totalLikes;
+              }
+            });
+          }
         }
       });
     }

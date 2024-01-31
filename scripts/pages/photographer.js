@@ -92,14 +92,15 @@ const displayMedia = async () => {
 
     setFilteredMedias(photographerMedias);
     updateMediasLikes(photographerMedias);
-    const lightbox = new HandleLightboxClass();
-    lightbox.handleLightbox();
-    photographerMedias.forEach((media) => {
-      lightbox.displayLightbox(media, photographerId, "click");
-      lightbox.displayLightbox(media, photographerId, "keydown");
-    });
-    lightbox.setCarousel(photographerMedias, photographerId, "click");
-    lightbox.setCarousel(photographerMedias, photographerId, "keydown");
+    updateCarousel(photographerMedias, photographerId);
+    // const lightbox = new HandleLightboxClass();
+    // lightbox.handleLightbox();
+    // photographerMedias.forEach((media) => {
+    //   lightbox.displayLightbox(media, photographerId, "click");
+    //   lightbox.displayLightbox(media, photographerId, "keydown");
+    // });
+    // lightbox.setCarousel(photographerMedias, photographerId, "click");
+    // lightbox.setCarousel(photographerMedias, photographerId, "keydown");
   }
 };
 
@@ -109,6 +110,17 @@ export const updateMediasLikes = (photographerMedias) => {
     mediasLikes.displayMediasLikes(media.likes);
     mediasLikes.setLikes(media.likes, media.id);
   });
+};
+
+export const updateCarousel = (photographerMedias, photographerId) => {
+  const lightbox = new HandleLightboxClass();
+  lightbox.handleLightbox();
+  photographerMedias.forEach((media) => {
+    lightbox.displayLightbox(media, photographerId, "click");
+    lightbox.displayLightbox(media, photographerId, "keydown");
+  });
+  lightbox.setCarousel(photographerMedias, photographerId, "click");
+  lightbox.setCarousel(photographerMedias, photographerId, "keydown");
 };
 
 function init() {
