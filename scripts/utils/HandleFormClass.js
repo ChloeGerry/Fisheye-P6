@@ -1,5 +1,3 @@
-import { sendNotification } from "./notification.js";
-
 export class HandleFormClass {
   constructor() {
     this.modalBackground = document.getElementsByClassName("modal-background")[0];
@@ -125,7 +123,11 @@ export class HandleFormClass {
 
       this.form.reset();
       this.closeModal();
-      sendNotification();
+      const notificationWrapper = document.getElementsByClassName("notification-wrapper")[0];
+      notificationWrapper.style.display = "block";
+      setTimeout(() => {
+        notificationWrapper.style.display = "none";
+      }, 5000);
     }
   };
 
