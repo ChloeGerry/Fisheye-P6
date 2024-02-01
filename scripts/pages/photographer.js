@@ -41,9 +41,6 @@ async function displayPhotographer() {
     photographerName = choosenPhotographer.name;
     const mediasLikes = new HandleLikesClass();
     mediasLikes.displayPhotographerPrice(choosenPhotographer.price);
-  } else {
-    errorMessage.displayErrorMessage();
-    photographerInformations.style.display = "none";
   }
 
   if (!choosenPhotographer) {
@@ -60,10 +57,15 @@ async function displayPhotographer() {
 }
 
 const displayMedia = async () => {
+  const { photographers } = await getPhotographers();
   const { medias } = await getMedia();
 
-  if (!medias || medias.length === 0) {
-    return;
+  if ((photographers || photographers.length > 0) && (!medias || medias.length === 0)) {
+    const errorMessage = new PhotographerErrorMessage();
+    const mediasWrapper = document.getElementsByClassName("medias")[0];
+
+    errorMessage.displayErrorMessage();
+    mediasWrapper.style.display = "none";
   }
 
   if (medias) {
@@ -93,14 +95,6 @@ const displayMedia = async () => {
     setFilteredMedias(photographerMedias);
     updateMediasLikes(photographerMedias);
     updateCarousel(photographerMedias, photographerId);
-    // const lightbox = new HandleLightboxClass();
-    // lightbox.handleLightbox();
-    // photographerMedias.forEach((media) => {
-    //   lightbox.displayLightbox(media, photographerId, "click");
-    //   lightbox.displayLightbox(media, photographerId, "keydown");
-    // });
-    // lightbox.setCarousel(photographerMedias, photographerId, "click");
-    // lightbox.setCarousel(photographerMedias, photographerId, "keydown");
   }
 };
 

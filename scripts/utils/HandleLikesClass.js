@@ -6,27 +6,15 @@ export class HandleLikesClass {
   }
 
   displayPhotographerPrice = async (photographerDailyPrice) => {
-    const mediasLikesWrapper = document.createElement("aside");
-    mediasLikesWrapper.classList.add("medias-likes-wrapper");
-    this.main.appendChild(mediasLikesWrapper);
-
-    const totalOfMediasLikesWrapper = document.createElement("span");
-    totalOfMediasLikesWrapper.classList.add("total-medias-likes-wrapper");
-    mediasLikesWrapper.appendChild(totalOfMediasLikesWrapper);
-
-    const totalOfMediasLikes = document.createElement("p");
-    totalOfMediasLikes.classList.add("media-likes-text");
-    totalOfMediasLikesWrapper.appendChild(totalOfMediasLikes);
-
-    const heartIcon = document.createElement("img");
-    heartIcon.setAttribute("src", "./assets/icons/like-black-icon.svg");
-    heartIcon.setAttribute("alt", "icône d'un coeur");
-    totalOfMediasLikesWrapper.appendChild(heartIcon);
-
-    const photographerPrice = document.createElement("p");
-    photographerPrice.classList.add("media-likes-text");
-    photographerPrice.textContent = `${photographerDailyPrice}€ / jour`;
-    mediasLikesWrapper.appendChild(photographerPrice);
+    this.main.innerHTML += `
+      <aside class="medias-likes-wrapper">
+        <span class="total-medias-likes-wrapper">
+          <p class="media-likes-text"></p>
+          <img src="./assets/icons/like-black-icon.svg" alt="icône d'un coeur">
+        </span>
+        <p class="media-likes-text">${photographerDailyPrice}€ / jour</p>
+      </aside>
+    `;
   };
 
   displayMediasLikes = (likes) => {
@@ -36,7 +24,7 @@ export class HandleLikesClass {
   };
 
   updateMediasLikes = (likes, mediaId, eventType) => {
-    const mediasLikesIcons = document.querySelectorAll(".like-icon");
+    const mediasLikesIcons = document.getElementsByClassName("like-icon");
     const totalOfMediasLikes = document.getElementsByClassName("media-likes-text")[0];
 
     for (let i = 0; i < mediasLikesIcons.length; i++) {

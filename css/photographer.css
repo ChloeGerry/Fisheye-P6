@@ -126,15 +126,21 @@
   cursor: pointer;
 }
 
-.middle-item {
+.date-item {
+  display: none;
   border-top: 1px solid var(--white-color);
   border-bottom: 1px solid var(--white-color);
   padding: 0.7em 0.375em;
 }
 
+.title-item {
+  display: none;
+}
+
 .medias-wrapper {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
   gap: 5.938em;
   flex-wrap: wrap;
 }
@@ -144,6 +150,7 @@
   height: 18.75em;
   object-fit: cover;
   border-radius: var(--border-radius);
+  cursor: pointer;
 }
 
 .media-informations {
@@ -217,20 +224,12 @@
 #contact-modal {
   border-radius: var(--border-radius);
   background-color: var(--tertiary-color);
-  width: 50%;
-  left: 50%;
-  top: 130%;
-  transform: translate(-50%, -50%);
-  position: absolute;
+  width: 30%;
   z-index: 1;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2.188em;
+  padding: 2em;
   border: none;
   box-shadow: -5px 10px 30px 0px rgba(0, 0, 0, 0.25);
-  overflow: hidden;
-  max-height: fit-content;
+  margin: 1.5em auto;
 }
 
 .modal-header {
@@ -248,16 +247,9 @@
 .modal-title {
   display: flex;
   flex-direction: column;
-  font-size: 4em;
+  font-size: 2em;
   font-weight: var(--medium-font-weight);
   margin: 0;
-}
-
-.form-wrapper {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: flex-start;
 }
 
 .form-data_wrapper {
@@ -283,21 +275,25 @@
 }
 
 .modal-label {
-  font-size: 2.5em;
+  font-size: var(--small-font-size);
   color: #312e2e;
   font-weight: var(--medium-font-weight);
 }
 
 .modal-input {
   width: 100%;
-  height: 2.8em;
+  height: 2em;
   border: none;
   border-radius: var(--border-radius);
   font-size: var(--small-font-size);
 }
 
+#form-message {
+  margin: 0;
+}
+
 .message-input {
-  height: 7em;
+  height: 6em;
 }
 
 .form-button {
@@ -307,7 +303,7 @@
   border: none;
   font-size: 1.125em;
   padding: 1.5em 3em;
-  margin: 1.5em 0 0 0;
+  margin: 1em 0 0 0;
 }
 
 #lightbox-modal {
@@ -352,4 +348,17 @@
 
 .lightbox-right-arrow {
   right: 1.5%;
+}
+
+.notification-wrapper {
+  border: 1px solid #312e2e;
+  width: fit-content;
+  border-radius: 5px;
+  padding: 0.5em 2em;
+  background: #312e2e;
+  color: var(--white-color);
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 2%;
+  position: absolute;
 }

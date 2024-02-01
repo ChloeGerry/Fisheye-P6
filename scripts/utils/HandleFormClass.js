@@ -91,10 +91,8 @@ export class HandleFormClass {
 
     this.closeIcon.addEventListener("click", this.closeModal);
 
-    this.closeIcon.addEventListener("keydown", (event) => {
-      console.log("event.key", event.key);
+    this.closeIcon.addEventListener("keypress", (event) => {
       if (event.key === "Enter") {
-        console.log("test");
         this.closeModal();
       }
     });

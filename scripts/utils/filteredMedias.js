@@ -27,51 +27,21 @@ const sortPhotographerMedias = (photographerMedias, sortFunction) => {
 export const setFilteredMedias = async (photographerMedias) => {
   const filterItemWrapper = document.getElementsByClassName("filter-item_wrapper")[0];
 
-  const filterItemsLabel = document.createElement("label");
-  filterItemsLabel.setAttribute("id", "filter-label");
-  filterItemsLabel.textContent = "Trier par";
-  filterItemWrapper.appendChild(filterItemsLabel);
+  filterItemWrapper.innerHTML = `
+    <label id="filter-label">Trier par</label>
+    <div class="option-items-wrapper" role="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="filter-label" tabindex="0">
+      <div>
+      <button class="item popular-item" value="Popularité" role="listbox" aria-selected="false" aria-label="popularité" tabindex="0">Popularité</button>
+      <img src="./assets/icons/arrow.svg" alt="flèche" class="arrow-icon" tabindex="0">
+      </div>
+      <button class="item date-item" value="Date" role="listbox" aria-selected="false" aria-label="date" tabindex="0">Date</button>
+      <button class="item title-item" value="Titre" role="listbox" aria-selected="false" aria-label="titre" tabindex="0">Titre</button>
+    </div>
+  `;
 
-  const optionsItemsWrapper = document.createElement("div");
-  optionsItemsWrapper.classList.add("option-items-wrapper");
-  optionsItemsWrapper.setAttribute("role", "button");
-  optionsItemsWrapper.setAttribute("aria-haspopup", "listbox");
-  optionsItemsWrapper.setAttribute("aria-expanded", "false");
-  optionsItemsWrapper.setAttribute("aria-labelledby", "filter-label");
-  optionsItemsWrapper.setAttribute("tabindex", "0");
-  filterItemWrapper.appendChild(optionsItemsWrapper);
-
-  const filterItemOptionPopularWrapper = document.createElement("div");
-  filterItemOptionPopularWrapper.innerHTML = `
-  <button class="item popular-item" value="Popularité" role="listbox" aria-selected="false" aria-label="popularité" tabindex="0">Popularité</button>
-  <img src="./assets/icons/arrow.svg" alt="flèche" class="arrow-icon" tabindex="0">`;
-  filterItemOptionPopularWrapper.classList.add("option-item-popular_wrapper");
-  optionsItemsWrapper.appendChild(filterItemOptionPopularWrapper);
-
-  const filterItemOptionPopular = document.getElementsByClassName("popular-item")[0];
-
-  const filterItemOptionDate = document.createElement("button");
-  filterItemOptionDate.classList.add("item");
-  filterItemOptionDate.classList.add("middle-item");
-  filterItemOptionDate.setAttribute("value", "Date");
-  filterItemOptionDate.setAttribute("role", "listbox");
-  filterItemOptionDate.setAttribute("aria-selected", "false");
-  filterItemOptionDate.setAttribute("aria-label", "date");
-  filterItemOptionDate.setAttribute("tabindex", "0");
-  filterItemOptionDate.style.display = "none";
-  filterItemOptionDate.textContent = "Date";
-  optionsItemsWrapper.appendChild(filterItemOptionDate);
-
-  const filterItemOptionTitle = document.createElement("button");
-  filterItemOptionTitle.classList.add("item");
-  filterItemOptionTitle.setAttribute("value", "Titre");
-  filterItemOptionTitle.setAttribute("role", "listbox");
-  filterItemOptionTitle.setAttribute("aria-selected", "false");
-  filterItemOptionTitle.setAttribute("aria-label", "titre");
-  filterItemOptionTitle.setAttribute("tabindex", "0");
-  filterItemOptionTitle.style.display = "none";
-  filterItemOptionTitle.textContent = "Titre";
-  optionsItemsWrapper.appendChild(filterItemOptionTitle);
+  const optionsItemsWrapper = document.getElementsByClassName("option-items-wrapper")[0];
+  const filterItemOptionDate = document.getElementsByClassName("date-item")[0];
+  const filterItemOptionTitle = document.getElementsByClassName("title-item")[0];
 
   const displayListbox = (eventType) => {
     const arrow = document.getElementsByClassName("arrow-icon")[0];
@@ -102,6 +72,8 @@ export const setFilteredMedias = async (photographerMedias) => {
 
   displayListbox("click");
   displayListbox("keydown");
+
+  const filterItemOptionPopular = document.getElementsByClassName("popular-item")[0];
 
   const sortedMedias = [
     {

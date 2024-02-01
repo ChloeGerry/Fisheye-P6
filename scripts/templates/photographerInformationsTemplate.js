@@ -7,44 +7,15 @@ export function photographerInformationsTemplate(photographers) {
       "photographer-presentation"
     )[0];
 
-    const photographerProfileWrapper = document.createElement("div");
-    photographerProfileWrapper.classList.add("photographer-profile_wrapper");
-    photographerProfileWrapper.setAttribute("tabindex", 0);
-    photographerProfileWrapper.setAttribute("aria-label", `informations sur le profil de ${name}`);
-    photographerInformations.append(photographerProfileWrapper);
-
-    const photographerName = document.createElement("h1");
-    photographerName.textContent = `${name}`;
-    photographerName.setAttribute("tabindex", 0);
-    photographerName.classList.add("photographer-name");
-    photographerProfileWrapper.append(photographerName);
-
-    const photographerLocation = document.createElement("p");
-    photographerLocation.textContent = `${city}, ${country}`;
-    photographerLocation.setAttribute("tabindex", 0);
-    photographerLocation.classList.add("photographer-location");
-    photographerProfileWrapper.append(photographerLocation);
-
-    const photographerTagline = document.createElement("p");
-    photographerTagline.textContent = `${tagline}`;
-    photographerTagline.setAttribute("tabindex", 0);
-    photographerTagline.classList.add("photographer-tagline");
-    photographerProfileWrapper.append(photographerTagline);
-
-    const contactButton = document.createElement("button");
-    contactButton.textContent = "Contactez-moi";
-    contactButton.classList.add("contact-button");
-    contactButton.setAttribute("role", "button");
-    contactButton.setAttribute("aria-label", "me contacter");
-    photographerInformations.append(contactButton);
-
-    const photographerPicture = document.createElement("img");
-    photographerPicture.setAttribute("src", picture);
-    photographerPicture.setAttribute("alt", name);
-    photographerPicture.setAttribute("tabindex", 0);
-    photographerPicture.classList.add("photographer-picture");
-    photographerInformations.append(photographerPicture);
-
+    photographerInformations.innerHTML = `
+      <div class="photographer-profile_wrapper" tabindex="0" aria-label="informations sur le profil de ${name}">
+        <h1 tabindex="0" class="photographer-name">${name}</h1>
+        <p tabindex="0" class="photographer-location">${city}, ${country}</p>
+        <p tabindex="0" class="photographer-tagline">${tagline}</p>
+      </div>
+      <button class="contact-button" role="button" aria-label="me contacter">Contactez-moi</button>
+      <img src="${picture}" alt="${name}" tabindex="0" class="photographer-picture">
+    `;
     return photographerInformations;
   }
 

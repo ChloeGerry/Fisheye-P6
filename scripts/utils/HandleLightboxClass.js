@@ -1,7 +1,8 @@
 export class HandleLightboxClass {
   constructor() {
     this.main = document.getElementById("main");
-    this.medias = document.querySelectorAll(".media");
+    this.medias = document.getElementsByClassName("media");
+
     this.lightbox = document.getElementById("lightbox-modal");
     this.lightboxWrapper = document.getElementsByClassName("lightbox-wrapper")[0];
     this.lightboxMediaWrapper = document.getElementsByClassName("lightbox-media-wrapper")[0];
@@ -15,7 +16,7 @@ export class HandleLightboxClass {
     for (let i = 0; i < this.medias.length; i++) {
       this.medias[i].addEventListener(eventType, (event) => {
         if (event.key === "Enter" || eventType === "click") {
-          const mediaId = parseInt(this.medias[i].dataset.id);
+          const mediaId = Number(this.medias[i].dataset.id);
           if (mediaId === photographerMedia.id) {
             this.slideIndex = i;
             this.lightbox.setAttribute("aria-hidden", "false");
@@ -23,11 +24,8 @@ export class HandleLightboxClass {
             this.main.setAttribute("tabindex", 1);
             this.lightbox.showModal();
             const choosenMedia = photographerMedia.mediaFile;
-            this.lightboxMediaWrapper.innerHTML = `<img src="./assets/images/${photographerId}/${choosenMedia}" alt="${photographerMedia.title}" class="lightbox-media">`;
-            const mediaName = document.createElement("h2");
-            mediaName.textContent = photographerMedia.title;
-            mediaName.classList.add("lightbox-media-title");
-            this.lightbox.appendChild(mediaName);
+            this.lightboxMediaWrapper.innerHTML = `<img src="./assets/images/${photographerId}/${choosenMedia}" alt="${photographerMedia.title}" 
+            class="lightbox-media"><h2 class="lightbox-media-title">${photographerMedia.title}</h2>`;
           }
         }
       });
@@ -59,20 +57,22 @@ export class HandleLightboxClass {
     if (fileType) {
       this.lightboxMediaWrapper.innerHTML = `<img src="./assets/images/${photographerId}/${choosenMedia}" alt="${
         photographerMedias[this.slideIndex].title
-      }" class="lightbox-media">`;
+      }" class="lightbox-media">
+      <h2 class="lightbox-media-title">${photographerMedias[this.slideIndex].title}</h2>`;
     } else {
       this.lightboxMediaWrapper.innerHTML = `<video controls="true" aria-label="ouvrir ${
         photographerMedias[this.slideIndex].title
-      }" class="lightbox-media"><source src="./assets/images/${photographerId}/${choosenMedia}" tabindex="0"></source><a src="./assets/images/${photographerId}/${choosenMedia}" aria-label="télécharger la vidéo">MP4</a></video>`;
+      }" class="lightbox-media">
+        <source src="./assets/images/${photographerId}/${choosenMedia}" tabindex="0"></source>
+        <a src="./assets/images/${photographerId}/${choosenMedia}" aria-label="télécharger la vidéo">MP4</a>
+      </video>
+      <h2 class="lightbox-media-title">${photographerMedias[this.slideIndex].title}</h2>`;
     }
-
-    const mediaName = document.getElementsByClassName("lightbox-media-title")[0];
-    mediaName.innerHTML = photographerMedias[this.slideIndex].title;
   };
 
   setCarousel = (photographerMedias, photographerId, eventType) => {
     this.lightboxRightArrow.addEventListener(eventType, (event) => {
-      if (event.key === "ArrowRight" || eventType === "click") {
+      if (event.key === "ArrowRight" || event.key === "Enter" || eventType === "click") {
         this.slideIndex++;
 
         if (this.slideIndex === photographerMedias.length) {
@@ -84,7 +84,7 @@ export class HandleLightboxClass {
     });
 
     this.lightboxLeftArrow.addEventListener(eventType, (event) => {
-      if (event.key === "ArrowLeft" || eventType === "click") {
+      if (event.key === "ArrowLeft" || event.key === "Enter" || eventType === "click") {
         if (this.slideIndex === 0) {
           this.slideIndex = photographerMedias.length;
         }
