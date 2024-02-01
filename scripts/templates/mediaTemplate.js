@@ -18,7 +18,7 @@ export function mediaTemplate(photographerMedia) {
       <span class="likes-wrapper">
         <p class="likes-number" tabindex="0" data-id="${photographerMedia.id}" aria-label="nombre de j'aime du media">${photographerMedia.likes}</p>
         <img src="./assets/icons/like-icon.svg" alt="icône d'un coeur" role="button" class="like-icon" data-id="${photographerMedia.id}" tabindex="0" 
-        aria-label="incrémentation du nombre de j'aime du média">
+        aria-label="ajouter un j'aime au média">
       </span>
     </div>`;
   } else {
@@ -31,7 +31,7 @@ export function mediaTemplate(photographerMedia) {
         <span class="likes-wrapper">
           <p class="likes-number" tabindex="0" data-id="${photographerMedia.id}" aria-label="nombre de j'aime du media">${photographerMedia.likes}</p>
           <img src="./assets/icons/like-icon.svg" alt="icône d'un coeur" role="button" class="like-icon" data-id="${photographerMedia.id}" tabindex="0" 
-          aria-label="incrémentation du nombre de j'aime du média">
+          aria-label="ajouter un j'aime au média">
         </span>
       </div>`;
   }

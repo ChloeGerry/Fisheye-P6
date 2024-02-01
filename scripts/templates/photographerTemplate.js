@@ -10,11 +10,11 @@ export function photographerTemplate(data) {
     article.innerHTML = `
       <a href="photographer.html?id=${id}" role="link" aria-label="navigation secondaire vers la page de ${name}" class="photographer-link">
         <img src="${picture}" alt="${name}" class="photographer-picture">
-        <h2 tabindex="0" class="photographer-name">${name}</h2>
+        <h2 class="photographer-name">${name}</h2>
       </a>
-      <p tabindex="0" class="photographer-location">${city}, ${country}</p>
-      <p tabindex="0" class="photographer-tagline">${tagline}</p>
-      <p tabindex="0" class="photographer-price">${price}€/jour</p>
+      <p class="photographer-location">${city}, ${country}</p>
+      <p class="photographer-tagline">${tagline}</p>
+      <p class="photographer-price">${price}€/jour</p>
     `;
     return article;
   }

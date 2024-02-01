@@ -25,7 +25,7 @@ export class HandleLightboxClass {
             this.lightbox.showModal();
             const choosenMedia = photographerMedia.mediaFile;
             this.lightboxMediaWrapper.innerHTML = `<img src="./assets/images/${photographerId}/${choosenMedia}" alt="${photographerMedia.title}" 
-            class="lightbox-media"><h2 class="lightbox-media-title">${photographerMedia.title}</h2>`;
+            class="lightbox-media"><h2 class="lightbox-media-title" tabindex="0">${photographerMedia.title}</h2>`;
           }
         }
       });
@@ -57,7 +57,7 @@ export class HandleLightboxClass {
     if (fileType) {
       this.lightboxMediaWrapper.innerHTML = `<img src="./assets/images/${photographerId}/${choosenMedia}" alt="${
         photographerMedias[this.slideIndex].title
-      }" class="lightbox-media">
+      }" class="lightbox-media" tabindex="0">
       <h2 class="lightbox-media-title">${photographerMedias[this.slideIndex].title}</h2>`;
     } else {
       this.lightboxMediaWrapper.innerHTML = `<video controls="true" aria-label="ouvrir ${

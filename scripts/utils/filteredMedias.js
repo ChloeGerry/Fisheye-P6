@@ -32,7 +32,7 @@ export const setFilteredMedias = async (photographerMedias) => {
     <div class="option-items-wrapper" role="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="filter-label" tabindex="0">
       <div>
       <button class="item popular-item" value="Popularité" role="listbox" aria-selected="false" aria-label="popularité" tabindex="0">Popularité</button>
-      <img src="./assets/icons/arrow.svg" alt="flèche" class="arrow-icon" tabindex="0">
+      <img src="./assets/icons/arrow.svg" alt="flèche"  aria-label="dérouler la liste de filtre des medias" class="arrow-icon" tabindex="0">
       </div>
       <button class="item date-item" value="Date" role="listbox" aria-selected="false" aria-label="date" tabindex="0">Date</button>
       <button class="item title-item" value="Titre" role="listbox" aria-selected="false" aria-label="titre" tabindex="0">Titre</button>
