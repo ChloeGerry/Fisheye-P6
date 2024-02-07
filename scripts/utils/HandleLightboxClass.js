@@ -60,11 +60,11 @@ export class HandleLightboxClass {
       }" class="lightbox-media" tabindex="0">
       <h2 class="lightbox-media-title">${photographerMedias[this.slideIndex].title}</h2>`;
     } else {
-      this.lightboxMediaWrapper.innerHTML = `<video controls="true" aria-label="ouvrir ${
+      this.lightboxMediaWrapper.innerHTML = `<video controls aria-label="ouvrir ${
         photographerMedias[this.slideIndex].title
       }" class="lightbox-media">
         <source src="./assets/images/${photographerId}/${choosenMedia}" tabindex="0"></source>
-        <a src="./assets/images/${photographerId}/${choosenMedia}" aria-label="télécharger la vidéo">MP4</a>
+        <a href="./assets/images/${photographerId}/${choosenMedia}" aria-label="télécharger la vidéo">MP4</a>
       </video>
       <h2 class="lightbox-media-title">${photographerMedias[this.slideIndex].title}</h2>`;
     }

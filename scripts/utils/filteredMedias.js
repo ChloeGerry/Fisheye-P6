@@ -29,13 +29,13 @@ export const setFilteredMedias = async (photographerMedias) => {
 
   filterItemWrapper.innerHTML = `
     <label id="filter-label">Trier par</label>
-    <div class="option-items-wrapper" role="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="filter-label" tabindex="0">
-      <div>
-      <button class="item popular-item" value="Popularité" role="listbox" aria-selected="false" aria-label="popularité" tabindex="0">Popularité</button>
-      <img src="./assets/icons/arrow.svg" alt="flèche"  aria-label="dérouler la liste de filtre des medias" class="arrow-icon" tabindex="0">
+    <div class="option-items-wrapper" role="listbox" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="filter-label" tabindex="0">
+      <div class="popular-item-wrapper">
+        <div class="item popular-item" role="listbox" aria-label="popularité" tabindex="0">Popularité</div>
+        <img src="./assets/icons/arrow.svg" alt="flèche"  aria-label="dérouler la liste de filtre des medias" class="arrow-icon" tabindex="0">
       </div>
-      <button class="item date-item" value="Date" role="listbox" aria-selected="false" aria-label="date" tabindex="0">Date</button>
-      <button class="item title-item" value="Titre" role="listbox" aria-selected="false" aria-label="titre" tabindex="0">Titre</button>
+      <div class="item date-item" role="listbox" aria-label="date" tabindex="0">Date</div>
+      <div class="item title-item" role="listbox" aria-label="titre" tabindex="0">Titre</div>
     </div>
   `;
 
@@ -91,13 +91,13 @@ export const setFilteredMedias = async (photographerMedias) => {
   ];
 
   sortedMedias.forEach((sortedMedia) => {
-    sortedMedia.domFilterButton.setAttribute("aria-selected", "false");
     sortedMedia.domFilterButton.addEventListener("click", () => {
-      updatePhotographerMedias(
-        photographerMedias,
-        sortedMedia.sortFunction,
-        sortedMedia.domFilterButton.setAttribute("aria-selected", "true")
-      );
+      updatePhotographerMedias(photographerMedias, sortedMedia.sortFunction);
+    });
+    sortedMedia.domFilterButton.addEventListener("keyup", (event) => {
+      if (event.key === "Enter") {
+        updatePhotographerMedias(photographerMedias, sortedMedia.sortFunction);
+      }
     });
   });
 };

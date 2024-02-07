@@ -31,7 +31,7 @@
         </div>
       </main>
     </div>
-    <dialog id="contact-modal" role="dialog" aria-hidden="true" autofocus tabindex="0">
+    <dialog id="contact-modal" aria-hidden="true">
       <div class="modal-header" role="banner" aria-label="en-tête du formulaire">
         <h2 class="modal-title">
           Contactez-moi
@@ -49,91 +49,84 @@
       <form role="form" class="form-wrapper">
         <div role="group" aria-labelledby="coordonnees" class="form-data_wrapper">
           <p id="coordonnees"></p>
-          <div
-            class="form-data first-name-error-message"
-            data-error="Votre prénom doit contenir 2 caractères ou plus."
+          <label for="prenom" class="modal-label">Prénom</label>
+          <input
+            name="prenom"
+            id="prenom"
+            type="text"
+            tabindex="0"
+            class="modal-input"
+            aria-required="true"
+            aria-invalid="false"
+            aria-labelledby="firstName-error"
+          />
+          <span
+            id="firstName-error"
             data-error-visible="false"
+            class="form-data first-name-error-message accessibility-error"
+            >Votre prénom doit contenir 2 caractères ou plus</span
           >
-            <label for="prenom" class="modal-label">Prénom</label>
-            <input
-              name="prenom"
-              id="prenom"
-              type="text"
-              tabindex="0"
-              class="modal-input"
-              aria-required="true"
-              aria-invalid="false"
-              aria-errormessage="Votre prénom doit contenir 2 caractères ou plus."
-            />
-          </div>
-          <div
-            class="form-data last-name-error-message"
-            data-error="Votre nom doit contenir 2  caractères ou plus."
+          <label for="nom" class="modal-label">Nom</label>
+          <input
+            name="nom"
+            id="nom"
+            type="text"
+            tabindex="0"
+            class="modal-input"
+            aria-required="true"
+            aria-invalid="false"
+            aria-labelledby="lastName-error"
+          />
+          <span
+            id="lastName-error"
             data-error-visible="false"
+            class="form-data last-name-error-message accessibility-error"
+            >Votre nom doit contenir 2 caractères ou plus</span
           >
-            <label for="nom" class="modal-label">Nom</label>
-            <input
-              name="nom"
-              id="nom"
-              type="text"
-              tabindex="0"
-              class="modal-input"
-              aria-required="true"
-              aria-invalid="false"
-              aria-errormessage="Votre nom doit contenir 2  caractères ou plus."
-            />
-          </div>
-          <div
-            class="form-data email-error-message"
-            data-error="Vous devez entrer votre mail."
+          <label for="email" class="modal-label">Email</label>
+          <input
+            name="email"
+            id="email"
+            type="email"
+            tabindex="0"
+            class="modal-input"
+            aria-required="true"
+            aria-invalid="false"
+            aria-labelledby="email-error"
+          />
+          <span
+            id="email-error"
             data-error-visible="false"
+            class="form-data email-error-message accessibility-error"
+            >Vous devez entrer votre mail</span
           >
-            <label for="email" class="modal-label">Email</label>
-            <input
-              name="email"
-              id="email"
-              type="email"
-              tabindex="0"
-              class="modal-input"
-              aria-required="true"
-              aria-invalid="false"
-              aria-errormessage="Vous devez entrer votre mail."
-            />
-          </div>
         </div>
         <div class="form-data_wrapper" role="group" aria-labelledby="form-message">
           <p id="form-message"></p>
-          <div
-            class="form-data message-error-message"
-            data-error="Vous devez entrer un message."
+          <label for="message" class="modal-label">Votre message</label>
+          <input
+            name="message"
+            id="message"
+            type="text"
+            tabindex="0"
+            class="modal-input message-input"
+            aria-required="true"
+            aria-invalid="false"
+            aria-labelledby="message-error"
+          />
+          <span
+            id="message-error"
             data-error-visible="false"
+            class="form-data message-error-message accessibility-error"
+            >Vous devez entrer un message</span
           >
-            <label for="message" class="modal-label">Votre message</label>
-            <input
-              name="message"
-              id="message"
-              type="text"
-              tabindex="0"
-              class="modal-input message-input"
-              aria-required="true"
-              aria-invalid="false"
-              aria-errormessage="Vous devez entrer un message."
-            />
-          </div>
         </div>
         <button role="button" class="form-button" type="submit" aria-label="envoyer">
           Envoyer
         </button>
       </form>
     </dialog>
-    <dialog
-      id="lightbox-modal"
-      role="dialog"
-      aria-hidden="true"
-      autofocus
-      tabindex="0"
-      aria-label="vue grand écran du media"
-    >
+    <dialog id="lightbox-modal" aria-hidden="true" aria-label="vue grand écran du media">
       <div class="lightbox-wrapper">
         <img
           src="./assets/icons/red-arrow.svg"

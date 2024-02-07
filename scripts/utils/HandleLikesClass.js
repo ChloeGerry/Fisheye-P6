@@ -8,10 +8,10 @@ export class HandleLikesClass {
   displayPhotographerPrice = async (photographerDailyPrice) => {
     this.main.innerHTML += `
       <aside class="medias-likes-wrapper" role="complementary">
-        <span class="total-medias-likes-wrapper">
+        <div class="total-medias-likes-wrapper">
           <p class="media-likes-text" aria-label="nombre total de j'aime du photographe"></p>
           <img src="./assets/icons/like-black-icon.svg" alt="icône d'un coeur">
-        </span>
+        </div>
         <p class="media-likes-text">${photographerDailyPrice}€ / jour</p>
       </aside>
     `;

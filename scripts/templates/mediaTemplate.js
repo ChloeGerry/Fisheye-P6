@@ -15,24 +15,24 @@ export function mediaTemplate(photographerMedia) {
     aria-label="ouvrir le carousel de medias"> 
     <div class="media-informations" aria-label="informations sur le media" tabindex="0">
       <h2 class="media-title">${photographerMedia.title}</h2>
-      <span class="likes-wrapper">
+      <div class="likes-wrapper">
         <p class="likes-number" tabindex="0" data-id="${photographerMedia.id}" aria-label="nombre de j'aime du media">${photographerMedia.likes}</p>
         <img src="./assets/icons/like-icon.svg" alt="icône d'un coeur" role="button" class="like-icon" data-id="${photographerMedia.id}" tabindex="0" 
         aria-label="ajouter un j'aime au média">
-      </span>
+      </div>
     </div>`;
   } else {
-    mediaWrapper.innerHTML = `<video class="media" controls="true" aria-label="${photographerMedia.title}">
+    mediaWrapper.innerHTML = `<video class="media" controls aria-label="${photographerMedia.title}">
         <source src="${mediaPath}"></source>
-        <a src="${mediaPath}" aria-label="télécharger la vidéo">MP4</a>
+        <a href="${mediaPath}" aria-label="télécharger la vidéo">MP4</a>
       </video>
       <div class="media-informations" aria-label="informations sur le media" tabindex="0">
         <h2 class="media-title">${photographerMedia.title}</h2>
-        <span class="likes-wrapper">
+        <div class="likes-wrapper">
           <p class="likes-number" tabindex="0" data-id="${photographerMedia.id}" aria-label="nombre de j'aime du media">${photographerMedia.likes}</p>
           <img src="./assets/icons/like-icon.svg" alt="icône d'un coeur" role="button" class="like-icon" data-id="${photographerMedia.id}" tabindex="0" 
           aria-label="ajouter un j'aime au média">
-        </span>
+        </div>
       </div>`;
   }
   return mediaWrapper;
