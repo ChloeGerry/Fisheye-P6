@@ -1,5 +1,5 @@
 import { photographerTemplate } from "../templates/photographerTemplate.js";
-import { getPhotographers } from "../utils/getPhotographer.js";
+import { getPhotographers } from "../utils/getPhotographers.js";
 
 async function displayPhotographers(photographers) {
   const photographersSection = document.getElementsByClassName("photographer-wrapper")[0];

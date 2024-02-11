@@ -42,6 +42,7 @@ export const setFilteredMedias = async (photographerMedias) => {
   const optionsItemsWrapper = document.getElementsByClassName("option-items-wrapper")[0];
   const filterItemOptionDate = document.getElementsByClassName("date-item")[0];
   const filterItemOptionTitle = document.getElementsByClassName("title-item")[0];
+  const filterItemOptionPopular = document.getElementsByClassName("popular-item")[0];
 
   const displayListbox = (eventType) => {
     const arrow = document.getElementsByClassName("arrow-icon")[0];
@@ -72,8 +73,6 @@ export const setFilteredMedias = async (photographerMedias) => {
 
   displayListbox("click");
   displayListbox("keydown");
-
-  const filterItemOptionPopular = document.getElementsByClassName("popular-item")[0];
 
   const sortedMedias = [
     {

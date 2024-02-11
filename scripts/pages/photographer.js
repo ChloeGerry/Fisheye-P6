@@ -1,4 +1,4 @@
-import { getPhotographers } from "../utils/getPhotographer.js";
+import { getPhotographers } from "../utils/getPhotographers.js";
 import { photographerInformationsTemplate } from "../templates/photographerInformationsTemplate.js";
 import { HandleFormClass } from "../utils/HandleFormClass.js";
 import { getMedia } from "../utils/getMedia.js";
