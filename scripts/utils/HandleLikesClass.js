@@ -30,6 +30,7 @@ export class HandleLikesClass {
     for (let i = 0; i < mediasLikesIcons.length; i++) {
       mediasLikesIcons[i].addEventListener(eventType, (event) => {
         if (event.key === "Enter" || eventType === "click") {
+          // get like icon data id to increse likes
           const likesIconId = parseInt(mediasLikesIcons[i].dataset.id);
           if (mediaId === likesIconId) {
             this.likes.forEach((like) => {

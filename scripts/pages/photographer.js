@@ -34,6 +34,7 @@ async function displayPhotographer() {
 
   let photographerName = null;
 
+  /// get the photographer id with URLSearchParams & currentUrl and match this id to the the photographer's medias id
   if (isIdExisting && photographerIdToDisplay) {
     choosenPhotographer = photographers.find(
       (photographer) => photographer.id === Number(photographerIdToDisplay)
@@ -69,6 +70,7 @@ const displayMedia = async () => {
   }
 
   if (medias) {
+    // get the photographer id with URLSearchParams & currentUrl and match this id to the the photographer's medias id
     const currentUrl = new URLSearchParams(window.location.search);
     const photographerId = currentUrl.get("id");
     const photographerMedias = [];

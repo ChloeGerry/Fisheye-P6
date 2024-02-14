@@ -16,6 +16,7 @@ export class HandleLightboxClass {
     for (let i = 0; i < this.medias.length; i++) {
       this.medias[i].addEventListener(eventType, (event) => {
         if (event.key === "Enter" || eventType === "click") {
+          // get media data-id to set the right media in the lightbox
           const mediaId = Number(this.medias[i].dataset.id);
           if (mediaId === photographerMedia.id) {
             this.slideIndex = i;
@@ -50,6 +51,7 @@ export class HandleLightboxClass {
   };
 
   fillLightbox = (photographerMedias, photographerId) => {
+    // fill dynamically the lightbox by checking media type
     const validImageType = ["jpg"];
     const choosenMedia = photographerMedias[this.slideIndex].mediaFile;
     const fileType = choosenMedia.includes(validImageType);

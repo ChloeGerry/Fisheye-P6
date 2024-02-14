@@ -1,6 +1,7 @@
 export function mediaTemplate(photographerMedia) {
   const fileMedia = photographerMedia.mediaFile;
   const validImageType = ["jpg"];
+  // check if the media type is an image or video and display the more accurate component
   const fileType = fileMedia.includes(validImageType);
 
   const mediaWrapper = document.createElement("article");

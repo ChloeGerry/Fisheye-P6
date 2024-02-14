@@ -42,6 +42,7 @@ export class HandleFormClass {
   getFormFields = () => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
+    // use array for updated fields validation
     const formFields = [
       {
         messageNode: this.firstNameErrorMessage,

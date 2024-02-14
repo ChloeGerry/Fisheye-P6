@@ -12,6 +12,7 @@ const updatePhotographerMedias = (photographerMedias, sortFunction) => {
   }
 };
 
+// use sort fonction to filter the medias
 const sortPhotographerMedias = (photographerMedias, sortFunction) => {
   const filteredMedias = photographerMedias.sort(sortFunction);
 
@@ -74,6 +75,7 @@ export const setFilteredMedias = async (photographerMedias) => {
   displayListbox("click");
   displayListbox("keydown");
 
+  // create array to add eventListenerEvent and use sort function to filter medias
   const sortedMedias = [
     {
       domFilterButton: filterItemOptionPopular,
